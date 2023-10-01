@@ -20,6 +20,7 @@
 \usepackage{microtype}
 %\usepackage{newspaper}
 \usepackage{yfonts}  % used for the paper title font
+%\usepackage{
 \date{\today}
 
 %\SetPaperName{Solsikke Tidende}
@@ -77,15 +78,31 @@
 \usepackage{lipsum}
 
 
-\colorlet{cfernando}{BlueViolet}
-\colorlet{cgosia}{RubineRed}
+%\colorlet{cfernando}{LightSteeleBlue3}
+\definecolor{cfernando}{RGB}{38,40,74}
+\definecolor{cgosia}{RGB}{164, 39, 168}
+\definecolor{cother}{RGB}{80, 97, 96}
+
 
 \newcommand\saygosia[1]{
-  {\color{cgosia}{\textit{- #1}}}
+  {\fontfamily{lmr}\selectfont \color{cgosia}{\textit{- #1}}}
 }
 
 \newcommand\sayfernando[1]{
-  {\color{cfernando}{\textit{- #1}}}
+  {\fontfamily{lmr}\selectfont \color{cfernando}{\textit{- #1}}}
+}
+
+\newcommand\sayother[1]{
+  {\fontfamily{lmr}\selectfont \color{cother}{\textit{- #1}}}
+}
+
+\newcommand\translatedfrom[1]{
+ \begin{center}
+  {\fontfamily{lmdh}\selectfont
+  {\textit{oversat fra #1}}
+  }
+ \end{center}
+
 }
 
 
@@ -130,13 +147,19 @@
 }
 		
 
-\newcommand\headline[1]{\begin{center} #1\\ %
-			\rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par}
+\newcommand\headline[1]{
+  {\fontfamily{lmdh}\selectfont
+    \begin{center} #1\\ %
+    \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
+}
 
 \newcommand\byline[2]{
+  {\fontfamily{lmdh}\selectfont
   \begin{center} #1 \\%
   {\footnotesize\bf af \MakeUppercase{#2}} \\ %
   \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
 }
 
 
@@ -148,9 +171,65 @@
 \begin{document}
 
 \maketitle
+\fontfamily{phv}\selectfont
 
 \begin{multicols}{2}
 \byline{Interview med Dr. Małgorzata Kowalczyk}{Fernándo Sanchez}
+
+Telefonen ringede og vækkede mig fra siesta kl. 14:17. 
+\translatedfrom{engelsk}
+\sayfernando{Sanchez Salsa Skole. Hvem snakker jeg med?}\\
+\sayother{Du snakker med.. Mike... Buffet}\\
+Skønt! Endnu en new age yuppie fra USA. \\
+\sayfernando{Lad mig gætte... Du og dine tre yuppie venner fra Yale er i Cali på sommerferie og nu vil I købe salsa-undervisning for at imponere de lokale kvinder?}\\
+\sayother{Noget i den stil}\\
+\sayfernando{Og hvor mange lektioner tænker I at I skal have?}\\
+\sayother{Cali er første stop på en længere tur rundt i Syd-Amerika, så det er nok bedst at få en del. Hvad kommer 500 lektioner af prima-undervisningen til at koste?}\\
+\sayfernando{800.000 pesos}\\
+\sayother{700.000}\\
+\sayfernando{Det var hyggeligt at snakke med jer. Nyd jeres tur i...}\\
+\sayother{800.000 er OK. Hvorhenne?}\\
+\sayfernando{Jeg skal lige møde jer først... for at se at kemien er i orden. Hvor bor I?}\\
+\sayother{10 minutter fra Retreta-parken}\\
+
+Det må være på Cali Marriot Hotel. Gringoerne bor altid på Marriot. Det kunne være at jeg bare skulle leje mig et værelse på Marriot og sælge direkte derfra.
+
+\sayfernando{Godt. Ring tilbage om 20 minutter. Jeg skal lige tjekke at min kalender har plads til 500 lektioner}\\
+\sayother{Til det her nummer?}\\
+
+Jeg lagde på. 2 minutter havde egentligt været tilstrækkeligt, men jeg ville godt lige have noget at spise inden jeg var nødt til at snakke med ham igen. Jeg hader at snakke med gringoer på tom mave.
+
+\paragraph{}
+
+Jeg smed nogle skefulde \textit{calentado} jeg havde lavet forleden dag i mikro-ovnen og satte den over på 2 minutter imens jeg ledte efter en \textit{burner} så jeg kunne ringe til min kontakt og sikre mig at jeg var leveringsdygtig. Hvis min kære \textit{tita} kiggede med fra oven ville hun nok skamme sig over hvordan hendes barnebarn gik til frokost, men jeg argumenterede overfor mig selv at \textit{calentado} i sin natur aldrig var opfundet til at blive serveret på firkantede tallerkener i Cali's finans-distrikt, men netop var en opfindelse der udsprang af økonomisk nødvendighed. Som skabt til mikro-ovnen. Og hvis vi endelig var derude hvor min kære mormor trofast subscribede på episoderne af mit liv, var der nok andre beslutninger hun havde fundet væsentligt mere tvivlsomme. "Økonomisk nødvendighed" tænkte jeg igen. 
+
+\paragraph{}
+Jeg satte et batteri i \textit{burneren} og tastede et nummer som jeg kunne udenad.
+
+\translatedfrom{spansk}
+\sayfernando{Det er 247. Kan 500 lade sig gøre indenfor 2 timer?}\\
+\sayother{Det er ikke et problem. Hvem er aftageren?}\\
+\sayfernando{Gringoer. Jeg tror de bor på Marriot. Har vi nogen rapporter om noget fra det område?}\\
+\sayother{Nej}\\
+
+%East - Not Safe. This is the real no go zone. Homicides are very common here. The eastern part of Cali is the reason Cali is one of the worlds most dangerous cities.
+%Manuela Beltran is probably the most dangerous neighborhood in Cali, and here are some comunas in Eastern Cali you should never visit of you wanna be safe: Comuna 13, 14, 15 and 21. So stay out of Aguablanca (Comuna 13, 14, 15 and 21) and eastern Cali.
+%
+% Bor på: Carrera 24b no. 32, Agua Blanca, Cali
+%
+
+\paragraph{}
+Gringoen ringede tilbage 5 minutter efter jeg havde forladt lejligheden, og var på vej nord af Calle 15b. 
+
+\translatedfrom{engelsk}
+\sayfernando{500 lektioner er fint nok. Ved I hvor Iglesia Ermita er?}\\
+\sayother{Det kan vi finde ud af}\\
+\sayfernando{Mød mig dér om en time}\\
+\sayother{OK}\\
+
+Jeg ville godt have muligheden for lige at se dem an før jeg mødte dem, så jeg var nødt til at vælge et sted der ikke lå for langt fra deres hotel så jeg kunne følge efter dem på vej til mødestedet, og med gringoer - har jeg lært - betyder det at jeg er nødt til at vælge et sted som ikke ligger længere væk end 15 minutter fra deres hotel, hvis der skal være en chance for at de ikke tager en taxa til mødestedet. Samtidigt kunne det ikke være et sted som lå for afsides, for det gør hele udvekslingen så meget mere besværlig når gringoerne føler sig for usikre. Terrassen foran Iglesia Ermita havde tidligere vist sig at have den perfekte blanding af at være tilstrækkeligt befolket til at gringoer ikke følte sig paranoide og samtidigt udstråle at man her kunne udføre transaktioner af alskens goder uden at det ville vække opsigt. Udvekslingen ville alligevel ikke ske dér, men jeg har lært at kontekst betyder alt i den benhårde Colombianske salsa-verden.\\
+
+Det så ud til at holde tørt hele dagen, og med himlen overdækket af skyer var det perfekt vejr til en gåtur. I rask tempo, ville jeg kunne være i Parque de la Retreta indenfor 50 minutter som de ville være nødt til at krydse på deres vej til kirken, så jeg satte de tandbørste-formede høretelefoner i ørerne og smed lidt stemnings-musik på.
 
 
 \muzaselection{Each must die someday}{L.B. One} {
@@ -163,9 +242,19 @@ And your death is on its way\\
 And your death is on its way\\
 }
 
+\section*{Handlen}
+Min timing viste sig at være perfekt. Jeg havde fundet en bænk langs med stien igennem parken og var gået igang med at strække ud, og med en t-shirt der var gennemsvedt fra gå-turen var det ikke svært at give den som NPC der lige havde været ude at løbe en tur. 4 gringoer passerede langs med stien 10 minutter før mødetidspunktet og jeg var ikke et øjeblik i tvivl om at det var dem jeg skulle mødes med. Selv i en anonym line-up med 99 hvide colombianere, alle iført badeshorts og Jesus-sandaler, ville jeg kunne udpege gringoen, og når vi så samtidigt snakkede om gringoer på vej til at gøre den største handel i deres liv, ville jeg kunne gøre det med tømmermænd og rock-stjerne solbriller på.\\
+Jeg fulgte efter gringoerne i en afstand af 100 meter, hvilket er langt mere end hvad havde været nødvendigt, for selv hvis jeg havde gået 2 meter bag dem med et kamerahold og ham dér fyren der holder en mikrofon i enden af en lang stand, tror jeg ikke at de ville have lagt mærke til mig. Auraen af nervøsitet og forventning over dette deres store eventyr var så kraftig at det kunne have fået Stevie Wonder til at bede om de "kraftige solbriller". På deres vej imod kirken forsøgte 2 af dem at aflade nervøsiteten ved at catcalle en gruppe prostituerede der havde fundet ophold i udkanten af parken og ét-eller-andet macho-ritual i form af en slags brydekamp. Begge dele uden at der kom andet ud af det end at overbevise mig om at vi her havde med en flok unge mænd at gøre, som tydeligvis hverken kunne slås eller havde den store erfaring med kvinder.\\ 
 
 
-\lipsum[1-1]
+%Berretta M9 + 2 ekstra magasiner m. 15 patroner i hver, Ontaria MK3 kniv, strips i 3 forskellige størrelser, affaldssække, 1 burner, 1 hotline, 1 privat telefon
+
+
+%Mike's kæreste har lige slået op. Han er i Colombia for at forstå hendes baggrund bedre. De andre er der for at kneppe damer og køre fede baner coke indenbords
+%Mike's kæreste flyttede til USA i 1992 (under sagen imod Pablo Escobar)
+%Mødested: Iglesia Señora de Carmen = bad news... Dér bliver folk myrdet og parteret
+%Løgnen: Der er udbrudt en kartel-krig imellem resterne af det gamle Medellín Kartel og lokale oprørsgrupper. "Det er det bedste jeg kan gøre for dig Mike"
+
 
 \muzaselection{Nebraska}{Bruce Springsteen} {
 They declared me unfit to live\\
@@ -177,7 +266,7 @@ Sir, I guess there's just a meanness in this world\\
 Så gik vi lige dér en tur i omegnen af kokain-raffinerierne.
 
 \saygosia{Jeg kommer faktisk oprindeligt her fra egnen}\\
-\sayfernando{¡¿Usted es de Columbia?!}\\
+\sayfernando{¡¿Usted es de Colombia?!}\\
 \saygosia{¡Sí! ¿No me crees?}\\
 \sayfernando{No es eso... Pero, ¡creí que era usted de Polonia! \\
 ¿Prefieres que realicemos la entrevista en español?}\\
