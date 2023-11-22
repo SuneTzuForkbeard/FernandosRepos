@@ -1,0 +1,268 @@
+\documentclass[danish]{article}
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+
+\usepackage[danish]{babel}
+%\usepackage[danish]{isodate}
+\usepackage[dvipsnames,table]{xcolor}
+
+\usepackage{ulem}
+%https://mirrors.dotsrc.org/ctan/macros/luatex/latex/emoji/emoji-doc.pdf
+%\usepackage{emoji}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{multirow}
+\usepackage{lilyglyphs} %https://www.ctan.org/pkg/lilyglyphs
+\usepackage{boldline}
+\usepackage{etoolbox}
+\usepackage{xstring}
+\usepackage{csquotes}
+
+\usepackage{microtype}
+%\usepackage{newspaper}
+\usepackage{yfonts}  % used for the paper title font
+%\usepackage{
+\date{\today}
+
+%\SetPaperName{Solsikke Tidende}
+%\SetPaperLocation{Santiago de Cali}
+%\SetPaperSlogan{\clefG \hspace{0.15cm} \textbf{$Cipher_{Caesar}(_3)$} \hspace{0.15cm} \clefG}
+%\SetPaperPrice{}
+
+\DeclareFontFamily{LYG}{bigygoth}{}
+\DeclareFontShape{LYG}{bigygoth}{m}{n}{<->s*[2.5]ygoth}{}
+
+\setlength\topmargin{-48pt} 		% article default = -58pt
+\setlength\headheight{0pt}  		% article default = 12pt
+\setlength\headsep{34pt}		% article default = 25pt
+\setlength\marginparwidth{-20pt}	% article default = 121pt
+\setlength\textwidth{7.0in}		% article default = 418pt
+\setlength\textheight{9.5in}		% article default = 296pt
+\setlength\oddsidemargin{-30pt}
+
+
+
+\def\papername{Solsikke Tidende}
+\def\headername{Solsikke Tidende}   % because of the yfonts you may need both papername and headername
+\def\paperlocation{København}
+\def\musagsduhint{{\footnotesize \clefG} \hspace{0.15cm} \textbf{$Cipher_{Caesar}(4)$} \hspace{0.15cm} {\footnotesize \clefG}}
+\newcommand\muzait{{\scriptsize\twoBeamedQuavers}\,}
+
+\newcommand\muzaselection[3]{
+  \paragraph{}
+  {\fontfamily{lmr}\selectfont
+  \textit{
+    \muzait 
+    {\Large\textbf{\StrLeft{#1}{1}}}\StrGobbleLeft{#1}{1}\, 
+     \muzait} (#2) \\
+  {\scriptsize
+   \textit{
+      \blockquote{#3}
+    }
+  }
+}}
+
+\def\paperprice{0 DKK}
+
+\newcounter{volumeno}
+\setcounter{volumeno}{56}
+\newcounter{issueno}
+\setcounter{issueno}{23}
+
+
+
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{picinpar}
+
+\usepackage{lipsum}
+
+\DeclareRobustCommand{\sovs}{
+ \mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+ }
+}
+
+
+%\colorlet{cfernando}{LightSteeleBlue3}
+\definecolor{cfernando}{RGB}{38,40,74}
+\definecolor{canna}{RGB}{164, 39, 168}
+\definecolor{csune}{RGB}{80, 97, 96}
+
+
+\newcommand\sayanna[1]{
+  {\fontfamily{lmr}\selectfont \color{canna}{\textit{- #1}}}
+}
+
+\newcommand\sayfernando[1]{
+  {\fontfamily{lmr}\selectfont \color{cfernando}{\textit{- #1}}}
+}
+
+\newcommand\saysune[1]{
+  {\fontfamily{lmr}\selectfont \color{csune}{\textit{- #1}}}
+}
+
+\newcommand\translatedfrom[1]{
+ \begin{center}
+  {\fontfamily{lmdh}\selectfont
+  {\textit{oversat fra #1}}
+  }
+ \end{center}
+
+}
+
+
+\renewcommand{\maketitle}{
+  \thispagestyle{empty}
+  \vspace*{-40pt}
+  \begin{center}
+  \hfill
+  {\textgoth
+   {\huge 
+     \usefont{LYG}{bigygoth}{m}{n} \papername
+   }
+  }\hfill%	
+  \raisebox{12pt}{
+   \textbf{
+    \footnotesize 
+    \paperlocation
+   }
+  }\\
+  \vspace*{0.1in}
+  \rule[0pt]{\textwidth}{0.5pt}\\
+  {\small 
+    VOL.\MakeUppercase{\roman{volumeno}}
+    \ldots No. \arabic{issueno}
+   } \hfill 
+   \MakeUppercase{\small \textit \today} 
+   \hfill {\small }\\
+  \rule[6pt]{\textwidth}{1.2pt}
+  \end{center}
+  \pagestyle{plain}
+}
+
+\def\ps@plain{%
+  \renewcommand\@oddfoot{}%					% empty recto footer
+  \let\@evenfoot\@oddfoot						% empty verso footer
+  \renewcommand\@evenhead
+  {\parbox{\textwidth}{\vspace*{4pt}
+  {\small VOL.\MakeUppercase{\roman{volumeno}}\ldots No.\arabic{issueno}}\hfill\normalfont\textbf{\headername}\quad\MakeUppercase{\textit\today}\hfill\textrm{\thepage}\\
+  \rule{\textwidth}{0.5pt}
+  \vspace*{12pt}}}%
+  \let\@oddhead\@evenhead
+}
+		
+
+\newcommand\headline[1]{
+  {\fontfamily{lmdh}\selectfont
+    \begin{center} #1\\ %
+    \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
+}
+
+\newcommand\byline[2]{
+  {\fontfamily{lmdh}\selectfont
+  \begin{center} #1 \\%
+  {\footnotesize\bf af \MakeUppercase{#2}} \\ %
+  \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
+}
+
+
+\newcommand\closearticle{{\begin{center}\rule[6pt]{\hsize}{1pt}\vspace*{-16pt}
+			\rule{\hsize}{0.5pt}\end{center}}}
+
+
+
+\begin{document}
+
+\maketitle
+\fontfamily{phv}\selectfont
+
+\begin{multicols}{2}
+\byline{Yule-off 2023}{Fernándo Sanchez}
+\subsection*{Buddet}
+Som jeg vil detaljere i en kommende artikel, var sagerne blevet lidt varme for mig i den colombianske salsa-underverden i Santiago de Cali, så da jeg blev kontaktet af presse-chefen for \textit{Office of the Chief Musical Officer} hos DCI@Nykredit, var det mig en belejlig mulighed for at køle lidt af i det kolde Københavnske sen-efterår. 
+Den korte Signal-besked jeg havde modtaget lød: \textit{``hvis du vil have et eksklusivt interview med den nye CCCO om de radikale fornyelser til jule-musik-arrangementet, bespiser vi dig. KB 2, tirsdag den 15. november kl. 11''}. 
+Fra min dækning af salsa-distributions-tjenesten for den rene colombianske salsa havde jeg stadigvæk nogle bekendte der kunne få mig billigt til Danmark, og jeg havde fra gamle bekendte i den københavnske omegn ladet mig forstå, at det burde være muligt for en arbejdsdygtig mand med tørst på livet og parathed til at arbejde lidt for sit logi, at finde en varm seng igennem \textit{Old Irish} på Frederiksberg. Jeg pakkede nogle lange bukser og en skjorte til at slippe igennem adgangskontrollen hos Nykredit,  tog forebyggende et par Azitromycin og smed resten i tasken og drog i taxi imod \textit{Alfonso Bonilla} lufthavnen.\\
+
+Nu håber jeg ikke at efterlade dig som læser med den opfattelse af mig at jeg er et videre sart menneske, men turen på de små 11 timer i et \textit{Airbus A340}-lastrum med temperaturer lige omkring frysepunktet, er en rejseform som jeg nok aldrig rigtigt kommer til at vænne mig til. Hver gang jeg har set mig nødsaget til denne type befordring har oplevelsen været den samme: man starter ud på sit normale niveau af selv(-ringe)-agtelse som bedst kan opsummeres ved: \textit{``nok bøjer jeg mit hoved for Gud og håber at han ikke holder et for vågent øje med mig, men jeg er vel næppe mere plettet end resten af denne beskidte horde''}, og når man - iført 3 lag bukser, t-shirts og skjorter (samt en enkelt ulden underkjole som man i sin frosne fornedrelse skamfuldt vristede sig i) - iler igennem bagage-afhentningen, beder man til selvsamme Gud om at man ikke støder ind i én der genkender \textit{StoreRobert}-outfittet eller er nødt til at overvære lille Oscars far rasende stamme sig igennem et dække overfor sønnike for hvorfor dennes kuffert er ankommet gennemblødt. Ukomfortabel som rejsen var, var den imidlertid den oplagte mulighed for at jeg kunne reflektere lidt nærmere over omstændighederne omkring min rejse.\\
+
+Hvorfor havde de skrevet til mig? Skønt jeg mener at mit tidligere interview med CDO Anna i det mindste var \textit{endt} på en tone der til forveksling kunne rime på fælles forståelse, var jeg sikker på at der måtte findes bedre egnede - og til Anna's fordel farvede - journalister lokalt. \\
+Hvad stod CCCO for? \textit{Chief Christmas Carolling Officer}? Og hvem kunne de have overladt dette vigtige hverv til? Jeg husker tydligt fra mit besøg hos Nykredit i 2018, hvor højt de går op i De'cember (det er vel de færreste kontorlandskaber der kan bryste sig med kontorkamin...?). De kan umuligt have ødslet en så vigtig post væk på hvem-som-helst. Og hvordan forholdte \textit{``The Wall''} sig til en anden person i en så vigtig stilling som konkurrent til at overtage CMO-embedet når den nuværende besidder kradsede af, enten ved naturens eller menneskelig hånd? Levede den nuværende CMO overhovedet stadigvæk? Rygterne på r/HestenettetNykreditNet gik i en periode på at manden enten var blevet opsagt, eller var blevet sendt i ufrivillig isolation i sin lejlighed på grund af \textit{stødende adfærd} såvel digitalt som IRL. Kulden og de mange spørgsmål blev mig til sidst for meget; jeg skuttede mig, iklædte mig fru Spelt-Müllers sovemaske og varme tæppe og omslog mig hendes kuffert som pølsen i en fransk hotdog, og lagde mig til at sove.\\
+
+\subsection*{Interviewet}
+Klokken var 10:50 da jeg meldte min ankomst i receptionen hos Nykredit, og 5 minutter senere kom CDO Anna ned for at tage imod mig. Hun var iklædt en stramtsiddende grøn kjole der gik hende til lige under knæene, og hendes fremtræden stod på alle måder i skarp kontrast til det billede af en jernhånd despot som mit tidligere møde med hende havde efterladt i min sjæl, som skyggerne på vægene af Hiroshima.\\
+
+\sayfernando{Anna! Det er en fornøjelse at se dig igen}\\
+\sayanna{mmmmm}\\
+
+Ah yes, der var det. \\  
+
+\sayfernando{Skal vi sidde hernede eller...}\\
+\sayanna{Vi sidder på broen ud for 3. sal}\\
+
+På vejen op i elevatoren, forsøgte jeg endnu engang at skyde en bold afsted: \\
+
+\sayfernando{Jeg hører at I har fået en ny Chief Christmas Carrolling Officer...?}\\
+
+med et bevidst spørgende anslag af ordene i titlen. \\
+
+\sayanna{Du kigger på hende... Men du skal kigge heroppe på hendes ansigt!}\\
+
+Point taken.\\
+
+Interviewet fandt sted i et besynderligt møbel-arrangement bestående af 2 overtrukne bænke, et lille bord imellem dem, og overtrukne lydmure på 3 af de 4 sider der omringede bordet. For mit indre kunne jeg se den nord-jyske indkøber for Nykredit stå i Ilva og beundre CEO-lounge udstillingen, udpege et bestemt arrangement for så at vende sig til salgspersonen og spørge: ``Fås den i netto-udgave?''.\\
+Da Anna og jeg kom hen til arrangementet, sad CMO'en der allerede med lukkede øjne og AirPods i ørene. Jeg havde - ligesom de fleste andre havde jeg på fornemmelsen - ikke set ham siden 2018, og det var tydligt at de seneste år ikke havde været ham til fordel. Selvom han under hele interviewet ikke sagde særligt meget, fik man en klar fornemmelse af at sidde overfor en person som har brændt sit lys i begge ender, og nu efterhånden bare ikke har meget mere at brænde af.\\
+
+\sayanna{Han mediterer}\\
+
+Hendes tonefald lod mig forstå, at der ikke var nogen grund til at ændre på dette.\\
+
+\sayfernando{Tillykke med din nye stilling. Jeg kender Wealth-området af DCI@Nykredit som et sted der går uhyre meget op i jule-musikken, så der findes vel dårligere en mere ærefuld stilling indenfor den 3. dimension...}\\
+
+Anna sagde ikke noget. Hun stirrede mig bare i øjnene. For mit indre kunne jeg se en stakkels colombiansk klovne-fisk svømme for livet rundt og rundt om sig selv, imens en flok pirat-fisk lå dødsstille i vandet med blikket skarpt rettet imod det kommende måltid.\\
+
+\sayfernando{Jeg har et billede af dig som en revolutionær og nyskabende leder. Jeg går ud fra at vi kommer til at se noget spritnyt i forbindelse med jule-musikken i år...?}\\
+
+\sayanna{Det kan du bidde spids på} sagde hun med antydningen af et smil, men blev afbrudt af en serie af sære åndedræt der kom fra CMO'en, der fik mig til at spærre øjnene op og se forskrækket over på manden.\\
+
+\sayanna{Det er en vikinge/buddhist-meditations-serie han har forelsket sig i. Jeg tror det vi lige overhørte dér var ``shotgun''-breathing} sagde hun uden at fortrække en mine.\\
+
+\sayanna{Julemusikken i år kommer til at tage interaktivitet til et helt nyt niveau. Det vil være muligt for den almindelige medarbejder at indstille julemusik til det store \textbf{Yule-off 2023}, som i sidste ende vil blive afgjort af publikums stemme, præcis som vi så det ved Dak-offs World Cup, men som noget helt nyt, vil der udover sang-konkurrencen også være en team-konkurrence hvor de enkelte teams i Biztech Wealth og Wealth Market kæmper om at skrabe point til sig ved at stemme på sange og vinde i daglige konkurrencer som ``Find Nissen'' og ``Meowy Christmas''}\\
+
+\saysune{KILLER!!} lød det pludselig i et råb fra CMO'en som spærrede øjnene op, tog tandbørste-hovederne ud af ørerne og spurgte:\\
+
+\saysune{hvor var vi?}\\
+
+\sayanna{Jeg var lige ved at sætte Fernando ind i \textbf{Yule-off 2023}}\\
+
+\saysune{Det bliver STORSLÅET siger jeg dig! En team-kamp er indbegrebet af julens ånd.  Til det hold der vinder, vil der være en præmie bestående af gratis team-tattoveringer til hele holdet. Jeg laver dem selv! Men vi får nok ikke lov til at lave dem On-Prem som man siger. Vi finder et andet sted. Og til 2. pladsen vil der være et gavekort på 3 timers undervisning i \sovs. Storartet!}\\
+
+Anna som indtil nu havde fremstået fuldstændigt urokkelig, så for første gang en smule ubekvem ud ved CMO'ens pludselige og usammenhængende udbrud.\\
+
+\sayanna{Jeg ligger i forhandlinger med ledelsen fra de andre to dimensioner i DCI om et budget at købe gaver for} sagde hun med et smil, men tydeligvist en smule forlegen.\\
+
+\saysune{Fernando...? Fernando..!? Det er egentligt et mærkeligt navn. Hvorfor hedder du ikke noget almindeligt... ligesom ``Jesper''? ``Jesper''... se, dér er et navn man kan stave til! Anywho: har du nogensinde danset \sovs Jesper?}\\
+
+Anna lagde på dette tidspunkt resolut og bestemt - men dog ikke uden en vis grad af nænsomhed - en hånd på CMO'ens skulder, kiggede ham i øjnene og sagde: \sayanna{nu skal du have den næste meditation!} som når man smider et tæppe over fugleburet og siger: ``nu skal Polly sove!''.\\
+
+\saysune{YAY! Det er den om kærlighed!} sagde han uden indvendinger, isatte tandbørstehovederne på ny og lænte sig tilbage i sædet med lukkede øjne.\\
+
+\sayanna{Vi har sendt bestillingen på et nyt site afsted til vores web-udvikler og vi forventer at kunne komme med en ny eksklusiv udmelding til Solsikke Tidende inden 1. december} sagde hun med et smil, og gjorde antræk til at rejse sig, på en sådan måde at der ikke var tvivl om at interviewet nu var overstået.\\
+
+\sayfernando{Sååå... beskeden jeg modtog sagde noget om bespisning...?} sagde jeg håbefuldt.\\
+
+\sayanna{Jeg har købt en madbillet til dig til kantinen. Det er fiskedag} afsluttede hun samtalen uden at fortrække en mine, og gik.\\
+
+Jeg fulgte hende med øjnene indtil hun var forsvundet ind i et mødelokale. ``Så står den altså på Old Irish på Frederiksberg i aften'' tænkte jeg, og kørte en Azitromycin mere indenbords. ``Fiske-dag i Nykredit's kantine er måske en meget passende opvarmning i den forbindelse''.\\
+
+Jeg rejste mig for at gå imod kantinen, gav et respektfuldt lille buk til CMO'en, som nu havde et sagte smil på ansigtet, på samme måde som man ville tage sin afsked med en gammel bekendt ved en ``open-casket-funeral''. Imens jeg gik imod kantinen, spekulerede jeg på om svaret på mit sidste ubesvarede spørgsmål mon kunne være ``corporate white-washing'' gennem min association til Solsikke Tidende. 
+
+
+
+\end{multicols}
+
+\end{document}

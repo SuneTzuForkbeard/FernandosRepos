@@ -1,0 +1,373 @@
+\documentclass{report}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{ulem}
+%https://mirrors.dotsrc.org/ctan/macros/luatex/latex/emoji/emoji-doc.pdf
+%\usepackage{emoji}
+\usepackage[framemethod=tikz]{mdframed}
+%\usepackage{marginnote}
+%\setlength{\marginparwidth}{3cm}
+%\setlength{\marginparsep}{1cm}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+%\usepackage{lilyglyphs} %https://www.ctan.org/pkg/lilyglyphs
+\usepackage{array}
+\usepackage{boldline}
+\usepackage{etoolbox}
+\usepackage[labelformat=empty]{caption}
+%\usepackage{wasysym}
+%\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{csquotes}
+%\usepackage{animate}
+%\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{tikzfill}
+\usetikzlibrary{intersections, pgfplots.fillbetween, fill.image}
+\pgfdeclarelayer{back}
+\pgfsetlayers{back,main}
+%\usepackage{arsclassica}
+
+
+%\input{Setup/Graphical.tex}
+
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}%[section]
+
+
+
+\newcommand\chapterdecoration[1]{%
+%\begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate (dectopright) at ([yshift=-100] current page.north east);
+\coordinate (dectophelp) at ([xshift=-150] dectopright);
+\coordinate (dectopleft) at ([yshift=-75] dectophelp);
+\coordinate (decbottomright) at ([yshift=-500] dectopright);
+\coordinate (decbottomhelp) at ([yshift=-500] dectophelp);
+\coordinate (decbottomleft) at ([yshift=75] decbottomhelp);
+
+
+\foreach \x in {10,20,...,150} 
+  {
+   \path[draw, fill=white]  
+    ([yshift=- \x] dectopright)
+   --  ([xshift= \x , yshift= -\x] dectopleft) 
+   -- ([xshift=  \x , yshift= \x] decbottomleft) 
+   -- ([yshift=\x] decbottomright) 
+   -- ([yshift=\x + 4.5] decbottomright) 
+   -- ([xshift= \x +4.5 , yshift= \x +5] decbottomleft) 
+   -- ([xshift= \x  +4.5, yshift=- \x - 5] dectopleft) 
+   -- ([yshift= - \x -5] dectopright)
+   -- ([yshift=- \x] dectopright);
+ 
+
+  }
+
+\begin{pgfonlayer}{back}
+\path[draw, fill stretch image=#1, fill image opacity=0.2] %, fill image scale=0.5
+    (dectopright) -- (dectopleft) -- (decbottomleft) -- (decbottomright) -- (dectopright);
+\end{pgfonlayer}
+\end{tikzpicture}
+}
+
+
+\newcommand{\chapterize}[4]{
+  \newpage
+  \chapterdecoration{#4}
+  \vspace{80pt}
+  \begin{center}
+  \end{center}
+  \begin{flushleft}
+   \textbf{\Huge #1}
+  \vspace{100pt}
+  
+  \parbox{9cm}{
+    {\color{gray} #2}\\
+    \hrule
+    \vspace{20pt}
+    #3
+    
+  }
+  \end{flushleft}
+  \newpage
+}
+
+
+
+
+\DeclareRobustCommand{\sovs}{
+ \mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+ }
+}
+
+\DeclareRobustCommand{\sectionsovs}{
+ \mbox{
+  {\Huge $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+ }
+}
+
+\DeclareRobustCommand{\sectionsovsen}{
+ \mbox{
+  {\Huge $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+  {\Huge $\sum_{}$ }
+  {\kern-0.3em$\mathbb{N}$}
+ }
+}
+
+
+\DeclareRobustCommand{\sovseneer}{
+\mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+  {\kern-0.3em\hbox{e}}
+  {\kern-0.3em$\mathbb{N}$}
+  {\Large $\sum_{}^{e}$ }
+  {\kern-0.3em\hbox{R}}
+ }
+}
+
+\DeclareRobustCommand{\sovsing}{
+ \mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}_{\mathbb{I}ng}$}
+ }
+}
+
+\mdfdefinestyle{scene}{
+  leftmargin=-0.2cm,
+  rightmargin=-2cm,
+  roundcorner=10pt,
+  frametitlerule=true,
+  frametitlebackgroundcolor=gray!20
+}
+
+
+\mdtheorem[style=scene]{scene}{Scene}
+
+
+%\kern-.36em%
+%
+ % {\sbox\z@ T%
+%    \vbox to\ht\z@{\hbox{\check@mathfonts
+ %   \fontsize\sf@size\z@  
+%    \math@fontsfalse\selectfont
+%    A}%
+%  \vss}%
+%}%
+%\kern-.15em%
+%\TeX}
+
+\author{Sunetiago Hansen}
+\title{Simrebogen}
+
+\colorlet{cfemale}{RubineRed}
+\colorlet{cmale}{BlueViolet}
+\colorlet{cdanish}{Gray}
+\definecolor{cfigsovs}{RGB}{18,37,103}
+\definecolor{cfigsalsa}{RGB}{138,0,0}
+\definecolor{cattack}{RGB}{185,0,185}
+
+\newcommand{\scactorf}[1]{{\color{cfemale}\textbf{\textit{#1}}}}
+\newcommand{\scactorm}[1]{{\color{cmale}\textbf{\textit{#1}}}}
+
+\newcommand{\dude}{\scactorm{Dude }}
+\newcommand{\dudetwo}{\scactorm{Dude$_{2}$}}
+\newcommand{\gal}{\scactorf{Gal }}
+
+
+\newcommand{\figsalsa}[1]{
+  {\color{cfigsalsa}
+    {\fontfamily{lmdh}\selectfont #1 }
+  }
+}
+
+\newcommand{\figsovs}[1]{
+  {\color{cfigsovs}
+    {\fontfamily{lmdh}\selectfont #1 }
+  }
+}
+
+\newcommand{\attack}[1]{
+  {\color{cattack}
+    {\fontfamily{qtm}\selectfont \textit{#1} }
+  }
+}
+
+\newcommand{\attackdesc}[1]{
+    {\fontfamily{qtm}\selectfont \textit{#1} }
+}
+
+\newcommand{\salsaguapea}{\figsalsa{guapea}}
+\newcommand{\salsavuelta}{\figsalsa{vuelta}}
+\newcommand{\salsavamos}{\figsalsa{vamos arriba}}
+\newcommand{\salsadile}{\figsalsa{dile que no}}
+\newcommand{\salsaenchufla}{\figsalsa{enchufla}}
+\newcommand{\salsavacilala}{\figsalsa{vacílala}}
+\newcommand{\salsauno}{\figsalsa{el uno}}
+\newcommand{\salsados}{\figsalsa{el dos}}
+\newcommand{\salsasetanta}{\figsalsa{setenta}}
+\newcommand{\salsasetantayuno}{\figsalsa{setenta y uno}}
+\newcommand{\salsasetantaydos}{\figsalsa{setenta y dos}}
+
+\newcommand{\Salsaguapea}{\figsalsa{Guapea}}
+\newcommand{\Salsavuelta}{\figsalsa{Vuelta}}
+\newcommand{\Salsavamos}{\figsalsa{Vamos arriba}}
+\newcommand{\Salsadile}{\figsalsa{Dile que no}}
+\newcommand{\Salsaenchufla}{\figsalsa{Enchufla}}
+\newcommand{\Salsavacilala}{\figsalsa{Vacílala}}
+\newcommand{\Salsauno}{\figsalsa{El uno}}
+\newcommand{\Salsados}{\figsalsa{El dos}}
+\newcommand{\Salsasetanta}{\figsalsa{Setenta}}
+\newcommand{\Salsasetantayuno}{\figsalsa{Setenta y uno}}
+\newcommand{\Salsasetantaydos}{\figsalsa{Setenta y dos}}
+
+\newcommand{\sovsguapea}{\figsovs{begynderen}}
+\newcommand{\sovsvuelta}{\figsovs{rundtenom}}
+\newcommand{\sovsvamos}{\figsovs{fremad Ama'r}}
+\newcommand{\sovsdile}{\figsovs{grønlændervendingen}}
+\newcommand{\sovsenchufla}{\figsovs{frem \& tilbage}}
+\newcommand{\sovsvacilala}{\figsovs{snurretoppen}}
+\newcommand{\sovsuno}{\figsovs{etteren}}
+\newcommand{\sovsdos}{\figsovs{to'eren}}
+\newcommand{\sovssetanta}{\figsovs{70'eren}}
+\newcommand{\sovssetantayuno}{\figsovs{71'eren}}
+\newcommand{\sovssetantaydos}{\figsovs{72'eren}}
+
+
+\newcommand{\Sovsguapea}{\figsovs{Begynderen}}
+\newcommand{\Sovsvuelta}{\figsovs{Rundtenom}}
+\newcommand{\Sovsvamos}{\figsovs{Fremad Ama'r}}
+\newcommand{\Sovsdile}{\figsovs{Grønlændervendingen}}
+\newcommand{\Sovsenchufla}{\figsovs{Frem \& tilbage}}
+\newcommand{\Sovsvacilala}{\figsovs{Snurretoppen}}
+\newcommand{\Sovsuno}{\figsovs{Etteren}}
+\newcommand{\Sovsdos}{\figsovs{To'eren}}
+\newcommand{\Sovssetanta}{\figsovs{70'eren}}
+\newcommand{\Sovssetantayuno}{\figsovs{71'eren}}
+\newcommand{\Sovssetantaydos}{\figsovs{72'eren}}
+
+\newcommand{\attknytter}{\attack{knytter}}
+\newcommand{\attsvinger}{\attack{svinger}}
+\newcommand{\attflemming}{\attack{Flemming}}
+\newcommand{\attbagknytter}{\attack{bag-knytter}}
+\newcommand{\attsideaxe}{\attack{væltet økse}}
+\newcommand{\attlosser}{\attack{losser}}
+\newcommand{\atttrykker}{\attack{trykker}}
+\newcommand{\attsidetrykker}{\attack{væltet trykker}}
+\newcommand{\atthestehilsen}{\attack{heste-hilsen}}
+\newcommand{\attfootjuglar}{\attack{fod-jonglør}}
+\newcommand{\attrambuk}{\attack{rambuk}}
+\newcommand{\attsuperman}{\attack{Superman}}
+\newcommand{\attkaffekage}{\attack{kaffe \& kage}}
+\newcommand{\attkneeler}{\attack{knæler}}
+\newcommand{\atttakedown}{\attack{ne'mæda}}
+
+\newcommand{\Attknytter}{\attack{Knytter}}
+\newcommand{\Attsvinger}{\attack{Svinger}}
+\newcommand{\Attflemming}{\attack{Flemming}}
+\newcommand{\Attbagknytter}{\attack{Bag-knytter}}
+\newcommand{\Attsideaxe}{\attack{Væltet økse}}
+\newcommand{\Attlosser}{\attack{Losser}}
+\newcommand{\Atttrykker}{\attack{Trykker}}
+\newcommand{\Attsidetrykker}{\attack{Væltet trykker}}
+\newcommand{\Atthestehilsen}{\attack{Heste-hilsen}}
+\newcommand{\Attfootjuglar}{\attack{Fod-jonglør}}
+\newcommand{\Attrambuk}{\attack{Rambuk}}
+\newcommand{\Attsuperman}{\attack{Superman}}
+\newcommand{\Attkaffekage}{\attack{Kaffe \& kage}}
+\newcommand{\Attkneeler}{\attack{Knæler}}
+\newcommand{\Atttakedown}{\attack{Ne'mæda}}
+
+
+
+\newcommand{\chapgap}{{\vspace{8pt}}}
+
+
+
+
+\begin{document}
+
+
+
+\input{Forside.tex}
+
+
+\chapterize{Smørbolle}
+  {
+     Bland tiloversbleven fedtstof fra tilberedning af rettens kød (f.eks. svinefedt der er dryppet fra flæskesteg eller stegefedtet fra stegte andelår) med smør i en gryde, og opvarm ved svag varme.\\ 
+
+    \chapgap
+
+     Tilsæt under omrøring mel indtil blandingen ikke længere er flydende. Spred smørbollen ud i gryden, og lad den stå ved lav varme indtil smørbollen udskiller en let nødde-agtig lugt. 
+  }
+  {
+   Mix leftover fat from cooking the meat of the dish (eg lard that has dripped from roast pork or the fat from fried duck legs) with butter in a saucepan at low heat. \\
+
+    \chapgap
+
+   Add flour while stirring until the mixture is no longer runny. Spread the butter ball out in the pan and leave it on low heat until the butter ball emits a slightly nutty smell.
+  
+  }{01-Intro/chapter-deco}
+  
+\input{01-Intro/Intro.tex}
+
+
+\chapterize{Opbagning af \sectionsovsen}
+  {
+   Når smørbollen begynder at afgive en let nøddeagtig duft, tilsættes ca. 2 dl. mælk eller fløde, og blandingen bringes til kogning. Det er på dette tidspunkt anbefalelsesværdigt at skrue op for varmen på blusset, men det er vigtigt at dette sker under konstant omrøring, da en sovs der er brændt på er en dårlig sovs.\\
+
+    \chapgap
+
+   Når blandingen er bragt til kogning, tilsættes en yderligere mængde mælk og blandingen bringes igen til kogning. Denne process fortsættes indtil den ønskede mætning og mængde sovs er tilvejebragt.
+  }
+  {
+   When the butter bun starts to give off a slightly nutty scent, add approx. 2 dl. milk or cream and bring the mixture to boil. At this point it is advisable to turn up the heat on the burner, but it is important that this is done with constant stirring, as a sauce that is burnt is a bad sauce.\\
+
+    \chapgap
+
+    When the mixture is brought to a boil, a further amount of milk is added and the mixture is again brought to boil. This process is repeated until the desired saturation and amount of sauce is achieved.
+  }{02-Description/chapter-deco}
+
+\input{02-Description/Description.tex}
+\input{02-Description/Nomenclature.tex}
+
+\chapterize{Tilsmagning}
+  {
+   Når sovsen har opnået den ønskede konsistens, smages den til med krydderier og andre smagsstoffer, indtil den ønskede smag er opnået. \\
+
+  \chapgap
+
+  Skal sovsen bruges til flæskesteg, anbefales det at tilsætte gode mængder svinefedt og ribsgele.\\
+
+  \chapgap
+
+  Skal sovsen bruges som ostesovs til lasagne, anbefales gode mængder mozzarella-ost og en smule muskat-nød. Glem ikke salt \& peber.
+  }
+  {
+When the sauce has achieved the desired consistency, it is flavored with spices and other flavorings until the desired flavor is achieved.\\
+
+  \chapgap
+
+  If the sauce is to be used for roast pork, it is recommended to add good amounts of lard and redcurrant jelly.\\ 
+
+  \chapgap
+
+  If the sauce is to be used for lasagne, good amounts of mozzarella cheese and a little nutmeg are recommended. Don't forget salt \& pepper.  
+}{03-Outro/chapter-deco}
+
+\input{03-Outro/Appearance.tex}
+
+\end{document}

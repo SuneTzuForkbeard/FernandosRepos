@@ -1,0 +1,116 @@
+\documentclass{book}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{ulem}
+%https://mirrors.dotsrc.org/ctan/macros/luatex/latex/emoji/emoji-doc.pdf
+\usepackage{emoji}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{marginnote}
+\setlength{\marginparwidth}{3cm}
+\setlength{\marginparsep}{1cm}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{lilyglyphs} %https://www.ctan.org/pkg/lilyglyphs
+\usepackage{array}
+\usepackage{boldline}
+\usepackage{etoolbox}
+\usepackage[labelformat=empty]{caption}
+\usepackage{wasysym}
+\usepackage{fancyhdr}
+
+\usepackage{csquotes}
+\usepackage{animate}
+\usepackage{hyperref}
+
+\colorlet{cfemale}{RubineRed}
+\colorlet{cmale}{BlueViolet}
+
+
+\DeclareRobustCommand{\sovs}{
+ \mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+ }
+}
+
+\DeclareRobustCommand{\sovseneer}{
+\mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+  {\kern-0.3em\hbox{e}}
+  {\kern-0.3em$\mathbb{N}$}
+  {\Large $\sum_{}^{e}$ }
+  {\kern-0.3em\hbox{R}}
+ }
+}
+
+\DeclareRobustCommand{\sovsing}{
+ \mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}_{\mathbb{I}ng}$}
+ }
+}
+
+\mdfdefinestyle{scene}{
+  leftmargin=-0.2cm,
+  rightmargin=-2cm,
+  roundcorner=10pt,
+  frametitlerule=true,
+  frametitlebackgroundcolor=gray!20
+}
+
+
+\mdtheorem[style=scene]{scene}{Scene}
+
+
+%\kern-.36em%
+%
+ % {\sbox\z@ T%
+%    \vbox to\ht\z@{\hbox{\check@mathfonts
+ %   \fontsize\sf@size\z@  
+%    \math@fontsfalse\selectfont
+%    A}%
+%  \vss}%
+%}%
+%\kern-.15em%
+%\TeX}
+
+\author{Sunetiago Hansen}
+\title{Simrebogen}
+
+\begin{document}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO,LE]{Simrebogen - The \sovs manifesto}
+
+\newcommand{\scactorf}[1]{{\color{cfemale}\textbf{\textit{#1}}}}
+\newcommand{\scactorm}[1]{{\color{cmale}\textbf{\textit{#1}}}}
+\newcommand{\sovsatt}[1]{{\textit{#1}}}
+
+
+
+\input{Forside.tex}
+\pagebreak{}
+\begin{center}
+{\Large
+\textit{\textbf{The story of \sovs}}
+}
+\\
+\vspace{0.5cm}
+\textbf{Part I} -\textit{ The \textbf{epidemic} stage}
+\end{center}
+
+%\part{Foundations of Sovs}
+%\input{00-principles/principles.tex}
+
+
+
+
+
+\newpage
+\end{document}
