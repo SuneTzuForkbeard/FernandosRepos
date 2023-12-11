@@ -1,0 +1,286 @@
+\documentclass[danish]{article}
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+
+\usepackage[danish]{babel}
+%\usepackage[danish]{isodate}
+\usepackage[dvipsnames,table]{xcolor}
+
+\usepackage{ulem}
+%https://mirrors.dotsrc.org/ctan/macros/luatex/latex/emoji/emoji-doc.pdf
+%\usepackage{emoji}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{multirow}
+\usepackage{lilyglyphs} %https://www.ctan.org/pkg/lilyglyphs
+\usepackage{boldline}
+\usepackage{etoolbox}
+\usepackage{xstring}
+\usepackage{csquotes}
+%\usepackage{datetime}
+\usepackage{microtype}
+%\usepackage{newspaper}
+\usepackage{yfonts}  % used for the paper title font
+%\usepackage{
+%\date{\today}
+
+%\SetPaperName{Solsikke Tidende}
+%\SetPaperLocation{Santiago de Cali}
+%\SetPaperSlogan{\clefG \hspace{0.15cm} \textbf{$Cipher_{Caesar}(_3)$} \hspace{0.15cm} \clefG}
+%\SetPaperPrice{}
+
+\DeclareFontFamily{LYG}{bigygoth}{}
+\DeclareFontShape{LYG}{bigygoth}{m}{n}{<->s*[2.5]ygoth}{}
+
+\setlength\topmargin{-48pt} 		% article default = -58pt
+\setlength\headheight{0pt}  		% article default = 12pt
+\setlength\headsep{34pt}		% article default = 25pt
+\setlength\marginparwidth{-20pt}	% article default = 121pt
+\setlength\textwidth{7.0in}		% article default = 418pt
+\setlength\textheight{9.5in}		% article default = 296pt
+\setlength\oddsidemargin{-30pt}
+
+
+
+\def\papername{Solsikke Tidende}
+\def\headername{Solsikke Tidende}   % because of the yfonts you may need both papername and headername
+\def\paperlocation{København}
+\def\musagsduhint{{\footnotesize \clefG} \hspace{0.15cm} \textbf{$Cipher_{Caesar}(4)$} \hspace{0.15cm} {\footnotesize \clefG}}
+\newcommand\muzait{{\scriptsize\twoBeamedQuavers}\,}
+
+\newcommand\muzaselection[3]{
+  \paragraph{}
+  {\fontfamily{lmr}\selectfont
+  \textit{
+    \muzait 
+    {\Large\textbf{\StrLeft{#1}{1}}}\StrGobbleLeft{#1}{1}\, 
+     \muzait} (#2) \\
+  {\scriptsize
+   \textit{
+      \blockquote{#3}
+    }
+  }
+}}
+
+\def\paperprice{0 DKK}
+
+\newcounter{volumeno}
+\setcounter{volumeno}{64}
+\newcounter{issueno}
+\setcounter{issueno}{25}
+
+
+
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{picinpar}
+
+\usepackage{lipsum}
+
+\DeclareRobustCommand{\sovs}{
+ \mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+ }
+}
+
+
+%\colorlet{cfernando}{LightSteeleBlue3}
+\definecolor{cfernando}{RGB}{38,40,74}
+\definecolor{canna}{RGB}{164, 39, 168}
+\definecolor{csune}{RGB}{80, 97, 96}
+\definecolor{cother}{RGB}{103, 103, 152}
+
+
+\newcommand\sayanna[1]{
+  {\fontfamily{lmr}\selectfont \color{canna}{\textit{- #1}}}
+}
+
+\newcommand\sayfernando[1]{
+  {\fontfamily{lmr}\selectfont \color{cfernando}{\textit{- #1}}}
+}
+
+\newcommand\saysune[1]{
+  {\fontfamily{lmr}\selectfont \color{csune}{\textit{- #1}}}
+}
+
+\newcommand\sayother[1]{
+  {\fontfamily{lmr}\selectfont \color{cother}{\textit{- #1}}}
+}
+
+
+
+\newcommand\translatedfrom[1]{
+ \begin{center}
+  {\fontfamily{lmdh}\selectfont
+  {\textit{oversat fra #1}}
+  }
+ \end{center}
+
+}
+
+
+\renewcommand{\maketitle}{
+  \thispagestyle{empty}
+  \vspace*{-40pt}
+  \begin{center}
+  \hfill
+  {\textgoth
+   {\huge 
+     \usefont{LYG}{bigygoth}{m}{n} \papername
+   }
+  }\hfill%	
+  \raisebox{12pt}{
+   \textbf{
+    \footnotesize 
+    \paperlocation
+   }
+  }\\
+  \vspace*{0.1in}
+  \rule[0pt]{\textwidth}{0.5pt}\\
+  {\small 
+     Særudgave I: Chief Christmas Carolling Officer
+   } \hfill 
+   \MakeUppercase{\small  12. december 2023} 
+   \hfill {\small }\\
+  \rule[6pt]{\textwidth}{1.2pt}
+  \end{center}
+  \pagestyle{plain}
+}
+
+\def\ps@plain{%
+  \renewcommand\@oddfoot{}%					% empty recto footer
+  \let\@evenfoot\@oddfoot						% empty verso footer
+  \renewcommand\@evenhead
+  {\parbox{\textwidth}{\vspace*{4pt}
+  {\small VOL.\MakeUppercase{\roman{volumeno}}\ldots No.\arabic{issueno}}\hfill\normalfont\textbf{\headername}\quad\MakeUppercase{\textit\today}\hfill\textrm{\thepage}\\
+  \rule{\textwidth}{0.5pt}
+  \vspace*{12pt}}}%
+  \let\@oddhead\@evenhead
+}
+		
+
+\newcommand\headline[1]{
+  {\fontfamily{lmdh}\selectfont
+    \begin{center} #1\\ %
+    \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
+}
+
+\newcommand\byline[2]{
+  {\fontfamily{lmdh}\selectfont
+  \begin{center} #1 \\%
+  {\footnotesize\bf af \MakeUppercase{#2}} \\ %
+  \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
+}
+
+
+\newcommand\closearticle{{\begin{center}\rule[6pt]{\hsize}{1pt}\vspace*{-16pt}
+			\rule{\hsize}{0.5pt}\end{center}}}
+
+
+
+\begin{document}
+
+\maketitle
+\fontfamily{phv}\selectfont
+
+\begin{multicols}{2}
+\byline{Et uventet rendezvous}{Fernándo Sanchez}
+%\subsection*{Flugten fra Laksegade}
+Kl. var 17:30 søndag den 10. december 2023, da Anna ringede. Jeg var netop blevet færdig med at \textit{``shine mig up''} inden jeg skulle til at finde noget mad at styrke mig på. 
+
+\sayfernando{Sanchez Salsa-Skole} sagde jeg kækt.\\
+\sayanna{Er du færdig?}\\
+\sayfernando{Ja}\\
+\sayanna{Er du sulten?}\\
+\sayfernando{Også ja}\\
+\sayanna{Godt... Vi skal spise med Price... Mød mig foran Tivoli kl. 19:00. Og Fernando... lad båndoptageren blive derhjemme eller i baggården eller hvor du nu har dine ting... det her er ikke et interview}\\
+\sayfernando{Det lyder hyggeligt, men der er jo lang tid til kl. 19... Kan vi lige nuppe en pølsevogn først?}\\
+\sayanna{...}\\
+\sayanna{[lægger på]}\\
+
+At sige at det ødelagde mine planer for aftenen er nok at gå for vidt, men min erfaring sagde mig at risikoen for at ende med at lugte af karrysild dagen efter steg for hver time jeg ankom senere til Old Irish. Der var dog noget usædvanligt venligt ved Annas tonefald idet hun gjorde opmærksom på at aftenens møde ikke var et interview der pirrede min nysgerrighed. Jeg havde et tilpas objektivt syn på min egen situation til at indse, at min daværende situations-fornemmelse var stærkt præget af de seneste ugers kælketure ned af mørke-siden af den menneskelige seksualitets Mount Everest, men jeg kunne ikke ryste den opfattelse ud af hovedet, at der havde været noget nærmest kælent over Annas udtryk over telefonen.\\
+
+\paragraph{}
+På min gåtur til Tivoli, nåede jeg at spekulere over økonomien i aftenens aftale. Jeg betragter mig selv som en forholdsvist simpel mand, der har et sundt fokus på at tilfredsstille P0 i Maslow's behovs-parkeringshus, og de behov var under de seneste ugers ophold i Danmark, blevet mere eller mindre automatisk tilfredsstillet (jovist, nogle gange krævede det at jeg tog en tur til andres P -1 eller i værste fald P -2), og det var gået op for mig at jeg faktisk ikke havde nogle penge. Jeg tog et spil \textit{``hombre o mujer''} (jeg ved ikke om I har det spil i Danmark, men det er i bund og grund ligesom plat eller krone: man stiller sig selv et spørgsmål, lukker øjnene idet man i hastig gang bevæger sig igennem en stærkt befolket plads, og hvis den første person man hører sige \textit{``AV FOR HELVEDE MAND! SE DIG FOR HVOR DU GÅR''} er en mandestemme svarer det til \textit{nej}, og hvis det er en kvindestemme er det {ja} (og hvis man falder ned i et mandehul, bliver kørt over eller på anden vis kommer ud for en alvorlig ulykke, har man stillet det forkerte spørgsmål)), om hvorvidt jeg burde fake at have fået stjålet min pung når jeg ankom til Tivoli, men det lod til at universets store Magic 8-ball mente at det var et problem jeg selv måtte ligge og rode med, for jeg havde svært ved at afgøre om stemmen der overfusede mig og hånden der klaskede mig i nakken tilhørte en kvindelig håndboldspiller eller en mandlig frisør. Under min hyperfokuseren på at finde svar på dét spørgsmål, glemte jeg helt det oprindelige spørgsmål, og inden jeg vidste af det stod jeg foran Tivoli og så havde universet måske alligevel besluttet sig for at give mig svaret.\\
+Anna ankom nærmest præcis på slaget 19.\\
+
+\sayfernando{Hold da op. Du ser skrap ud!}\\
+\sayanna{Ja}, sagde hun med et smil og hvad der kunne forveksles med et glimt i øjet.\\
+\sayfernando{Der var de her banditter på vej herover... der var mindst 10... og jeg fik kastet hænder på 7 af dem, men der var nu alligevel én af de luromdrejere der fik sneget sig min tegnebog op af lommen og...}\\
+\sayanna{Jeg giver} sagde hun med et  - denne gang mere anstrengt - smil.\\
+\sayfernando{Åh gudskelov... Jeg havde næsten ikke kunne bære hvis vi havde skulle bruge en time på den colombianske ambassade for at melde kort og pung stjålet og få frigivet midler... Så havde terroristerne vundet!}\\
+
+Ikke alene tilbød Anna at betale regningen for maden, men hun lod også til at have styr på alt det praktiske omkring at finde stedet og skaffe os indenfor. Vi blev anvist et bord i et mindre - og taget den generelle travlhed i restauranten i betragtning - forholdsvist intimt rum. Der var 3 andre borde i rummet. Ved 2 af dem sad hvad der forekom mig at være hr. og fru Danmark der i stiveste puds var ude at brænde årets overskud efter skatteunddragelsen af på en aften uden børnene. Ved det sidste bord sad 3 velklædte mænd, i færd med hvad der næsten ikke kunne være andet end et forretningsmøde af én-eller-anden slags. Vi blev anvist vores bord i mere eller mindre ubemærkethed, dog med det aber dabei at den ene af forretningsfolkene - en ualmindeligt flot ung fyr - kiggede på os i en sådan grad, at det grænsede til det stirrende.\\
+
+\sayanna{Har du nogensinde haft en hund?}\\
+\sayfernando{Ikke personligt, men jeg ved hvad det er}\\
+\sayfernando{... mine bedsteforældre havde hund}\\
+\sayanna{Har du nogensinde set en hund der får rabies?}\\
+\sayfernando{Aldrig. Bør jeg skrive det på min ``bucket list''?}\\
+\sayanna{Én af mine venner på Falster havde en hund der fik rabies. Den blev bidt af en flagermus under en aftentur i skoven. Vi troede at den var sluppet uskadt fra hændelsen. Det var først efter 2 måneder at den begyndte at vise tegn på sygdom. Til at starte med, virkede den sløj, men efter et par dage blev den virkeligt aggressiv, gøede konstant, spiste sten, angreb alt og alle...}\\
+\sayanna{Jeg tror at min vens far havde en mistanke om hvad der var galt. Han spærrede hunden inde i en indhegning i baghaven, og da den begyndte på det med at spise sten, tog han sin kløve-økse fra kælderen, bandt hunden fast til en træ-bænk og huggede hovedet af den.}\\
+
+På vejen til Tivoli, havde jeg gået og spekuleret over samtale-emner man kunne bringe op under en sådan lejlighed som nærværende. Jeg tog diskret telefonen frem under bordet og slettede listen: ``Samtale-emner - Anna - 2023-12-10''.\\ 
+
+\sayanna{I utroligt lang tid, var min ven og jeg sure på ham, for hvordan kan man bare slæbe sin hund igennem 10 år ud i baghaven og hugge hovedet af den...? }\\
+\sayanna{Synes du at han handlede rigtigt?}\\
+\sayfernando{Selvfølgelig! Rabies-døden er ikke pæn, og det der var i vente for hunden var langt værre. Og hvis den havde bidt jer...}\\
+
+Vi blev afbrudt af tjeneren der spurgte om vi havde besluttet os for hvad vi ønskede at bestille. Jeg kiggede rådvild på Anna, for jeg havde ingen idé om hvad restauranten serverede.\\
+
+\sayanna{Vi vil godt bede om en flaske Gilles Ballorin, og så tager vi 2 jule-platter} sagde hun med et smil henvendt til tjeneren.\\
+\sayanna{Men kan min ven erstatte karrysilden med koldrøget laks? Han tåler ikke så godt karry-sild længere}\\
+
+\textit{Betænksomt}, tænkte jeg. \\
+
+Da tjeneren var gået, rakte Anna mig sin telefon.\\
+\sayanna{Det du finder dér, er screenshots fra vores interne yammer-forum, med kommentarer skrevet af vores egen Chief Musical Officer}\\
+\sayanna{Hvis du scroller til højre, kan du bladre igennem nogle af mandens... ``poetiske perler'' over de seneste måneder. Det vil sige, de indlæg som har fået lov til at blive liggende, for kommunikations-afdelingen har fjernet de værste}\\
+\sayanna{Du finder blandt andet et indlæg, hvor han kommenterer med katte-giffer på en diskussion om mad-ordning. Og han blander sig i afstemningen omkring et rent kvinde wiffle-ball hold. Men billederne taler for sig selv...}\\
+
+Jeg bladrede skærmbillederne igennem, og jeg måtte give Anna ret i at CMO'ens udtalelser var ret outrere.\\
+\sayanna{De af os der var tæt på manden, så igennem fingre med det da hans adfærd begyndte at blive mærkelig... eller \textbf{mærkeligere}...}\\
+\sayanna{Vi har allesammen håbet på at det bare var efterdønninger fra skilsmissen eller corona-indespærringen, men corona er lang tid siden. Du så ham selv med hans meditationer. Manden er blevet utilregnelig, og hvad værre er: hans adfærd truer integriteten af den 3. dimension}\\
+\sayanna{Hvad tænker du at vi skal stille op med det problem?}\\
+
+Jeg fik pludselig \textit{déjà vu} til nogle af de snakke jeg igennem tiden havde haft med \textit{Salsa-kongerne af Santiago de Calí} og jeg havde en ildevarslende fornemmelse om årsagen til at Anna havde bedt om et møde her til aften. Jeg havde brug for tid til at formulere et næste skridt.\\
+
+\sayfernando{Jeg er frygteligt ked af det Anna, men ham den nydelige unge fyr derovre bliver ved med at sidde og glo på mig. Har du noget imod at jeg lige går over og fortæller ham at jeg er -15 °C og en gen-nedlukning af det københavnske natteliv fra at svinge den vej? }\\
+\sayanna{Du bliver siddende} sagde hun med et skarpt og iskoldt smil.\\
+\sayfernando{[kigger eftertænksomt ned i bordet, og så i øjnene på Anna]... Jeg har trukket mig ud af den branche}\\
+\sayanna{Det er helt OK} sagde hun afslappet med et smil og lænede sig tilbage i stolen.\\
+
+Jeg vidste godt at det ikke var OK, og jeg vidste godt at hun bare introducerede en dramatisk pause for at sætte scenen for det der skulle til at komme. Jeg lod hende.\\
+
+\sayanna{Ved du hvad Fernando?} sagde hun, idet hun lænede sig fremover og lagde sit hoved lidt på skrå.\\
+\sayanna{Du er en finurlig mand. Det er der vist mange der synes, fornemmer jeg. Jeg har gået og spkuleret sådan på hvad jeg skulle købe til dig i julegave, så jeg ringede til nogle af dine venner i Santiago de Calí forleden, og tænk engang: de vidste slet ikke hvor du var henne, men de virkede smadder-interesserede i at finde ud af det.}\\
+\sayfernando{Det varmer i hjertet at høre. Det er en skam du ikke fortalte dem hvor jeg er så.}\\
+\sayanna{Hvad får dig til at tro at jeg ikke gjorde det?}\\
+\sayfernando{Vi ved vidst begge to godt at jeg i så tilfælde ikke sad her}\\
+\sayanna{Hmmm... Interessante venner du har...}\\
+
+Der blev et øjebliks tavshed imellem os. Anna fløjtede til spilstart for 2. halvleg:\\
+\sayanna{Prøv at høre her: det her er muligvis den nemmeste opgave du nogensinde har fået. Du kan sikkert klare den uden overhovedet at skulle gøre noget aktivt. Sving forbi hos ham, og tab en pose fentanyl eller andet på vej ud af døren, og så tør jeg vædde med at han klarer opgaven for dig}\\
+\sayfernando{Jeg ville ikke engang vide hvordan jeg skulle skaffe fentanyl...}\\
+
+
+På dette tidspunkt blev vi afbrudt af at de 3 forretningsmænd rejste sig for at forlade restauranten. Idet de passerede forbi vores bord, kiggede Anna op på den flotte unge fyr, smilede beskedent og sagde:\\
+\sayanna{Hej Jonathan}\\
+og vendte herefter blikket tilbage på mig. Uden at kigge væk, rakte hun ned i sin håndtaske, hev et lille pilleglas og en lap papir frem og rakte mig begge.\\
+\sayanna{Her har du mandens adresse, og hvis du ikke kan finde på andet, er her et glas med stryknin...}\\
+\sayanna{men du er jo så opfindsom Fernando... jeg er sikker på at du nok skal finde en god løsning, ligesom du nok skal finde en måde at betale for det måltid der kommer om lidt, uden en krone på lommen}\\
+
+Med disse ord, rejste CCCO'en sig og gik imod udgangen. Halvvejs dér, vendte hun sig imod mig og sagde:\\
+\sayanna{Inden onsdag tak!}\\
+
+
+
+
+
+\end{multicols}
+
+\end{document}
