@@ -1,0 +1,315 @@
+\documentclass[danish]{article}
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+
+\usepackage[danish]{babel}
+%\usepackage[danish]{isodate}
+\usepackage[dvipsnames,table]{xcolor}
+
+\usepackage{ulem}
+%https://mirrors.dotsrc.org/ctan/macros/luatex/latex/emoji/emoji-doc.pdf
+%\usepackage{emoji}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{multirow}
+\usepackage{lilyglyphs} %https://www.ctan.org/pkg/lilyglyphs
+\usepackage{boldline}
+\usepackage{etoolbox}
+\usepackage{xstring}
+\usepackage{csquotes}
+%\usepackage{datetime}
+\usepackage{microtype}
+%\usepackage{newspaper}
+\usepackage{yfonts}  % used for the paper title font
+%\usepackage{
+%\date{\today}
+
+%\SetPaperName{Solsikke Tidende}
+%\SetPaperLocation{Santiago de Cali}
+%\SetPaperSlogan{\clefG \hspace{0.15cm} \textbf{$Cipher_{Caesar}(_3)$} \hspace{0.15cm} \clefG}
+%\SetPaperPrice{}
+
+\DeclareFontFamily{LYG}{bigygoth}{}
+\DeclareFontShape{LYG}{bigygoth}{m}{n}{<->s*[2.5]ygoth}{}
+
+\setlength\topmargin{-48pt} 		% article default = -58pt
+\setlength\headheight{0pt}  		% article default = 12pt
+\setlength\headsep{34pt}		% article default = 25pt
+\setlength\marginparwidth{-20pt}	% article default = 121pt
+\setlength\textwidth{7.0in}		% article default = 418pt
+\setlength\textheight{9.5in}		% article default = 296pt
+\setlength\oddsidemargin{-30pt}
+
+
+
+\def\papername{Solsikke Tidende}
+\def\headername{Solsikke Tidende}   % because of the yfonts you may need both papername and headername
+\def\paperlocation{København}
+\def\musagsduhint{{\footnotesize \clefG} \hspace{0.15cm} \textbf{$Cipher_{Caesar}(4)$} \hspace{0.15cm} {\footnotesize \clefG}}
+\newcommand\muzait{{\scriptsize\twoBeamedQuavers}\,}
+
+\newcommand\muzaselection[3]{
+  \paragraph{}
+  {\fontfamily{lmr}\selectfont
+  \textit{
+    \muzait 
+    {\Large\textbf{\StrLeft{#1}{1}}}\StrGobbleLeft{#1}{1}\, 
+     \muzait} (#2) \\
+  {\scriptsize
+   \textit{
+      \blockquote{#3}
+    }
+  }
+}}
+
+\def\paperprice{0 DKK}
+
+\newcounter{volumeno}
+\setcounter{volumeno}{64}
+\newcounter{issueno}
+\setcounter{issueno}{25}
+
+
+
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{picinpar}
+
+\usepackage{lipsum}
+
+\DeclareRobustCommand{\sovs}{
+ \mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+ }
+}
+
+
+%\colorlet{cfernando}{LightSteeleBlue3}
+\definecolor{cfernando}{RGB}{38,40,74}
+\definecolor{canna}{RGB}{164, 39, 168}
+\definecolor{csune}{RGB}{80, 97, 96}
+\definecolor{cother}{RGB}{103, 103, 152}
+
+
+\newcommand\sayanna[1]{
+  {\fontfamily{lmr}\selectfont \color{canna}{\textit{- #1}}}
+}
+
+\newcommand\sayfernando[1]{
+  {\fontfamily{lmr}\selectfont \color{cfernando}{\textit{- #1}}}
+}
+
+\newcommand\saysune[1]{
+  {\fontfamily{lmr}\selectfont \color{csune}{\textit{- #1}}}
+}
+
+\newcommand\sayother[1]{
+  {\fontfamily{lmr}\selectfont \color{cother}{\textit{- #1}}}
+}
+
+
+
+\newcommand\translatedfrom[1]{
+ \begin{center}
+  {\fontfamily{lmdh}\selectfont
+  {\textit{oversat fra #1}}
+  }
+ \end{center}
+
+}
+
+
+\renewcommand{\maketitle}{
+  \thispagestyle{empty}
+  \vspace*{-40pt}
+  \begin{center}
+  \hfill
+  {\textgoth
+   {\huge 
+     \usefont{LYG}{bigygoth}{m}{n} \papername
+   }
+  }\hfill%	
+  \raisebox{12pt}{
+   \textbf{
+    \footnotesize 
+    \paperlocation
+   }
+  }\\
+  \vspace*{0.1in}
+  \rule[0pt]{\textwidth}{0.5pt}\\
+  {\small 
+    VOL.\MakeUppercase{\roman{volumeno}}
+    \ldots No. \arabic{issueno}
+   } \hfill 
+   \MakeUppercase{\small  8. december 2023} 
+   \hfill {\small }\\
+  \rule[6pt]{\textwidth}{1.2pt}
+  \end{center}
+  \pagestyle{plain}
+}
+
+\def\ps@plain{%
+  \renewcommand\@oddfoot{}%					% empty recto footer
+  \let\@evenfoot\@oddfoot						% empty verso footer
+  \renewcommand\@evenhead
+  {\parbox{\textwidth}{\vspace*{4pt}
+  {\small VOL.\MakeUppercase{\roman{volumeno}}\ldots No.\arabic{issueno}}\hfill\normalfont\textbf{\headername}\quad\MakeUppercase{\textit\today}\hfill\textrm{\thepage}\\
+  \rule{\textwidth}{0.5pt}
+  \vspace*{12pt}}}%
+  \let\@oddhead\@evenhead
+}
+		
+
+\newcommand\headline[1]{
+  {\fontfamily{lmdh}\selectfont
+    \begin{center} #1\\ %
+    \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
+}
+
+\newcommand\byline[2]{
+  {\fontfamily{lmdh}\selectfont
+  \begin{center} #1 \\%
+  {\footnotesize\bf af \MakeUppercase{#2}} \\ %
+  \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
+}
+
+
+\newcommand\closearticle{{\begin{center}\rule[6pt]{\hsize}{1pt}\vspace*{-16pt}
+			\rule{\hsize}{0.5pt}\end{center}}}
+
+
+
+\begin{document}
+
+\maketitle
+\fontfamily{phv}\selectfont
+
+\begin{multicols}{2}
+\byline{Yule-off 2023 - Team Contest Anouncements}{Fernándo Sanchez}
+\subsection*{Flugten fra Laksegade}
+Jeg hørte telefonen ringe som gennem en tyk dyne. Mine arme var tunge som bly, og det tog mig lang tid at finde ud af hvordan jeg skulle manøvrere dem til at tage telefonen. \\
+
+\sayfernando{Hallo?}\\
+\sayanna{Hvor er du?}\\
+\sayfernando{... Jeg er ikke sikker... i Omvendt tror jeg. Jeg har ikke kontaktlinser på, men jeg tror at der hænger kæmperosiner på scootere fra loftet...}\\
+\sayanna{Er du ukurant igen?}\\
+\sayfernando{Nej... ikke på den måde... men jeg er heller ikke helt kurant tror jeg}\\
+\sayfernando{... jeg tror det er mig der er omvendt... jeg hænger på et kors...}\\
+
+Jeg var som en kæntret der vågner alene i mørket midt på glemslens kulsorte ocean, og desperat kaster sig rundt for at finde noget at holde fast i. Ét eller andet der kunne fortælle mig hvad der foregik i dette øjeblik. Jeg mærkede et tyndt tov af hukommelse, og prøvede forsigtigt at trække i det, for at se om der var noget i den anden ende.\\
+
+\sayfernando{Jeg tror måske at jeg blev giftet til en ældre kvinde der hedder Lucifa... Hun er en slags præstinde... Jeg tror at hun prøvede at suge sjælen ud af mig...}\\
+
+\sayanna{Stop!}\\
+\sayfernando{... sådan i fysisk forstand...}\\
+\sayanna{Du skal stoppe lige nu!}\\
+\sayfernando{Det var ikke mit blod...} tilføjede jeg forlegent.\\
+\sayanna{AD FOR HELVEDE FERNANDO! Vær her om 15 minutter!}\\
+
+Hvad der herefter fulgte var nærmest blevet fast morgen-rutine for mig henover de sidste par ugers ophold i Danmark: påklædning, flugt \& skam (og ikke nødvendigvis i den rækkefølge). 12 minutter og en hæsblæsende chase-scene (mellem på den ene side en midaldrende colombiansk mand og på den anden side 4 seniorere på tunede ældre-scootere) senere, nærmest besvimede jeg af træthed igennem de snurrende døre i Glaskubens indgang, hvilket betød starten på en meget lang dag for receptionistion og vagten der sad i receptionen. Det ved jeg, for da de så mig gjorde receptionisten intet for at dæmpe sit udbrud: \textit{``Åh Gud, det her bliver en lang dag''}, og vagten gjorde absolut intet for ikke at sige: \textit{``For fanden hvor kan jeg ikke overskue det her pis fra morgenstunden''}\\
+
+\sayfernando{Jeg skal snakke med CCCO'en}\\
+
+\sayother{(receptionist): Har du en aftale?}
+
+\sayfernando{Tror du jeg ville stå her i blomstret sommerkjole med rester af sveskegrød smurt gavmildt ud i ansigtet hvis ikke det var fordi at hun havde ringet og befalet mig at komme herhen omgående?}\\
+
+\sayother{(receptionist [med telefonen til øret]): Hun tager ikke telefonen}
+
+\sayfernando{Hun er sikkert på toilettet. Hvis du stikker mig ét af de dér gæstekort finder jeg selv op på 3.}\\
+\sayother{(receptionist [med et meget anstrengt forsøg på et smil]): Det kan vi desværre ikke tillade}\\
+
+Ovenpå den netop overståede fangeleg igennem indre by, kunne jeg ikke lige overskue et \textit{ground \& pound} med vagten, så jeg måtte indtil videre tage mig til takke med at finde mig til rette  i vente-stolene foran receptionen. Uden at sige et ord, var jeg på bedste \textit{Sharon Stone-i-Basic Instinct}-stil, i stand til at kommunikere følgende til den unge receptionist:\\
+
+\begin{itemize}
+\item min morgen-rutine denne morgen havde ikke inkluderet iklædning af boxershorts/trusser
+\item jeg havde glemt min intim-barber-maskine i Colombia
+\end{itemize}
+
+Under ét minut var gået da hun, med overraskende kraft og præcision, kastede et gæste-adgangskort efter mig. 
+
+\subsection*{Office Of the Chief Musical Officer}
+Da jeg trådte ind af glasdøren til 3. sals kontorlandskab, gik det op for mig at jeg ikke havde den fjerneste anelse om hvor den 3. dimension havde sine kontorer, og jeg gruede en lille smule for at ruske én af de små kontormus ud af deres skærm-trance for at spørge om vej. Det viste sig også at være ligegyldigt, for en tilbagelænet fyr ved én af bordøerne ved vinduet fik øje på mig, og pegede mig i retning af kontoret nede i hjørnet ud mod vandet, som om en midaldrende colombiansk mand iklædt blå blomsterkjole og sveskegrød kun kan være kommet for træffe ledelsen af den 3. dimension. Jeg kunne genkende lyden af CCCO'en og CMO'ens stemmer længe inden jeg åbnede døren og trådte ind i lokalet, omendt de var væsentligt mere højlydte og skingre end jeg tidligere har oplevet.\\
+
+\saysune{JEG SLÅR HAM KRAFTEDME IHJEL! MEOWY CHRISTMAS FOR HELVEDE! DET VAR VORES ALP D'HUEZ ANNA! DET VILLE SVARE TIL AT TOUR DE FRANCE LEDELSEN MELDTE KONGE-ETAPEN UD INDEN RYTTERNE VAR KOMMET TIL ALPERNE!}\\
+
+\sayanna{TOUR DE FRANCE RUTEN BLIVER SGU DA MELDT UD ET ÅR I FORVEJEN DIN STORE IDIOT!}\\
+
+\saysune{``IDIOT'' ER ET BUM-ORD! FRANKRIG ER IKKE ET LAND! }\\
+
+\sayanna{PRØV LIGE AT GIVE MENING!}\\
+
+\saysune{shhh... prøv lige at være stille... kan du høre den? Jeg tror det er Blodørnen jeg kan høre kalde på et offer? }\\
+
+CMO'en begyndte nu at baske med vingerne og hoppe op og ned fra stolen der stod ved siden af ham, alt imens han udbrød høje og skingre skrig, som jeg vil antage skulle lyde som en ørn, men som ærligt talt lød mere som en livstræt 40 årig mand.\\
+
+Jeg kan ikke bryste mig af at være den store menneskekender, og empati er ét af de karaktértræk jeg har spenderet færrest XP på at booste i det her mærkelige spil vi kalder Livet, men den kompetitive colombianske salsa-industri har lært mig at genkende udtrykket af en person der desparat scanner et rum efter et slagvåben, og Annas udtryk var ikke til at tage fejl af. Med ét stoppede CMO'en imidlertid sit besynderlige ritual, gik forsonende hen til Anna, tog hendes hånd og sagde kammeratligt (men også rimeligt nedladende):\\
+
+\saysune{Kære Anna. Det var forkert af mig at true dig med Blodørnen. Undskyld. Jeg ved at du er ung, og at du har et ophavsmæssigt handikap... altså Lolland, du ved... du må forstå, jule-musik branchen har udviklet sig så meget de sidste år... den er simpelthen så cut-throat at du ikke ville forstå det. Nærmest dagligt i december bliver jeg opsøgt af unge kvinder udsendt fra de andre store finansielle institutioner i Danmark, der alle beder om at komme med hjem og lege ``Find pebernødden'' i håbet om at jeg kommer til at røbe noget om hvad vi har støbeskeen, men du må forstå: heroppe på C-level er der altså ikke plads til at ``spill the beans'' over sengegærdet.
+}\\
+
+Det siger meget om min opfattelse af CMO'en, at jeg ikke ved om han sagde disse ord for at sparke gang i diskussionen igen, eller om han oprigtigt troede at de ville virke forsonende, men han var ikke kommet meget længere end ``kære Anna'' før jeg havde forudset hendes reaktion. Det må også være gået op CMO'en, for allerede inden han havde talt færdigt, flyttede han den kuglepen der før havde ligget indenfor rækkevidde af Anna.\\
+
+\sayanna{Du er fandme for meget! JEG HAR SKAFFET OS GRATIS REKLAME \& DEN \textbf{VILDESTE EKSPONERING} PÅ SoMe, OG DU HIMLER OP OM MEOWY FUCKING CHRISTMAS! HVAD MED AT VI SNAKKER OM TIRSDAGENS STORE IT-FIASKO! UUUUHHHH, SE DET HER FANCY SITE SOM VORES POLSKE UDVIKLINGSKONTOR HAR LAVET, SOM IKKE KAN HÅNDTERE TO AFSTEMNINGSRUNDER PÅ ÉN DAG! YOU HAD ONE JOB OG DET VAR AT SIKRE AT VI HAVDE ET SITE DEN 1. DECEMBER, MEN SOM ALT ANDET I DIT RETARDEREDE LIV GÅR DET HELE OP I VIKINGE-MEDITATIONER OG SOVSE-DANS! SOVS!!!! OG JEG ER FRA FALSTER!}\\
+
+\saysune{Du skal ikke snakke lollisk til mig... jeg forstår ikke jeres mærkelige sprog... her i Danmark kalder vi det Lolland}\\
+
+\sayanna{AAAAAARGH!!!!}\\
+
+Anna vendte sig nu pludseligt rundt og gik imod døren, og det lod til at hun først nu blev opmærksom på min tilstedeværelse.\\
+
+\sayanna{DU LIGNER EN IDIOT!} råbte hun efter mig og smækkede med døren på vej ud.\\
+
+CMO'en og jeg stod i et øjebliks tavshed. Det virkede til at min tilstedeværelse med ét gik op for CMO'en, og han slog ud med armene og nærmest råbte:
+
+\saysune{Jesper for helvede. Det er godt at se dig. Lad os sætte os ned. Så skal du få den seneste update fra Yule-Off 2023}\\
+
+\sayfernando{Og hvad var det dér?} sagde jeg, og forsøgte at pege 2 minutter tilbage i tiden til hans og Annas skænderi.\\
+
+\saysune{???}\\
+
+\sayfernando{Dit og Annas skænderi...?}\\
+
+\saysune{Kalder du det et skænderi? Det var bare onsdag morgen i OOCMO} sagde han med et grin.\\
+
+\saysune{Næh du, så skulle du have været her da vi skulle udvælge sange til puljerne til Yule-off. På én eller anden måde var det lykkedes hende at smugle en ilddrager forbi sikkerheden. Hun brækkede 2 ribben og punkterede én af mine lunger den dag. Det kan godt være at jeg har i hvert fald 20 kilo på hende, men giv den kvinde en ilddrager i hånden, og så kan hun bide skeer med de helt tunge drenge.}
+
+\saysune{Sig mig Jesper: sveskegrød og blomsterkjole. Har du været til fest i Laksegade? Skal jeg sige tillykke med brylluppet?}\\
+
+Med ét havde jeg det som om at jeg de sidste 2 uger havde vandret igennem den uberørte bjerg-sne for at blive den første mand på toppen af fetischismens Mount Everest, blot for at nå toppen af tinden og finde efterladt emballage af håndkøbsmedicin og nikotin-præparater.\\
+
+\saysune{Ved du hvad? Tag det her nummer, det vil være et naturligt næste skridt på din dannelses-rejse} sagde han, og stak en lap papir i hånden på mig.\\
+
+\saysune{Nå du, vi var hvor? Ah yes, Alp d'Huez. Som jeg var ved at forklare Anna, er vi nu ved at være kommet igennem de flade etaper, og i næste uge går det løs med...}\\
+
+\sayanna{K...G...B...} råbte Anna idet hun sparkede døren op.\\
+
+CMO'en kiggede spørgene på hende.\\
+
+\saysune{Stikkersvin...?}\\
+
+Anna's øjne lyste op, og så slog de begge en høj hyæne-agtig latter op, inden de ivrigt kastede sig ud i en højlydt udveksling af idéer. Jeg var stadigvæk i tvivl præcist hvad det netop overståede optrin havde handlet om, men jeg havde forstået så meget som at Annas PR-kontakt var kommet til at dele information som ikke skulle have været offentliggjort endnu, og at dette tilsyneladende var strafbart med ``død ved Blodørn''. Med tanke på vores stadig ubesatte korrektur-læser-stilling hos Solsikke Tidende, kom jeg til den konklusion at jeg havde tilstrækkeligt materiale til min næste artikel, og listede lige så stille ud af døren. Der var på dette tidspunkt absolut ingen der sagde:\\
+
+\sayother{Ej for helvede Fernando... hvor skal du hen? Bliv her!}
+
+\byline{Skandalen i retten}{Thorkild Tjärnsten}
+Hele den danske presse, ivrige bandekriminalitets-entusiaster og enkelte medlemmer fra den danske kongefamilie, var torsdag eftermiddag mødt op ved Københavns Byret for at overvære indledningen af retssagen imod Martin ``Masse-massakre'' Madsen, i det kriminelle miljø bedre kendt som 4M. Sagen har siden sin offentliggørelse virket som et stensikkert win for det danske retsvæsen, idet anklagermyndigheden menes at være i besiddelse af snesvis inkrimiderende video-optagelser og have modtaget vidnesudsagn fra op mod fyrretyve vidner om 4M's involvement i forhold om alt fra rufferi, hæleri, kontraktmord til musikalske forbrydelser imod menneskeheden. Det kom derfor som et kæmpe chok for alle tilstedeværende (måske lige med undtagelse af 4M selv, og en mand iblandt tilhørerne der til forveksling lignede Ryan Gosling (kendt fra Netflix-succesen \textit{The Gray Man})), med den begrundelse at alle videooptagelse var bortkommet under en mystisk brand i politiets arkiver samt skriftligt afbud fra alle indkaldte vidner.\\
+
+Vi spurgte politiets presseansvarlige ind til sagen:\\
+
+\sayother{Det skal I ikke tage så tungt. 4M er den type menneske der ikke kan lade være med at lave noget ondt og/eller voldeligt. Ham skal vi sgu nok snart få at se i byretten igen. Men personligt tager jeg mig sgu lige nogle sygedage indtil han sidder inde igen, ha ha ha ... Hør, det her interview er ``off the record, ikke?''}
+
+
+\byline{Endnu en mand mister sit blod og dør}{Susan Saxing}
+Endnu en mand er natten til fredag fundet død udenfor indgangen til Emdrupparkens Idrætsanlæg efter at have {``mistet alt sit blod''}. Vi forsøgte at få en kommentar fra Steen Ravnkilde ved Københavns politi, men denne var ikke til at få fat på. En mand der var ude at lufte en kæmpe hund da vi var på stedet, udtaler:\\
+
+\sayother{Ja, der er nogen der siger at der er vampyrer på spil, men det er der ikke! Kan du se den el-pæl dér? Den er inkognito. Det er en 5G-antenne. Det er Bill Gates der har plantet den dér. Det har han pengene til at gøre ser du! Det er 5G der få deres blod til at koge. 5G har også gjort mig til alkoholiker.}
+
+
+\end{multicols}
+
+\end{document}

@@ -1,0 +1,306 @@
+\documentclass[danish]{article}
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+
+\usepackage[danish]{babel}
+%\usepackage[danish]{isodate}
+\usepackage[dvipsnames,table]{xcolor}
+
+\usepackage{ulem}
+%https://mirrors.dotsrc.org/ctan/macros/luatex/latex/emoji/emoji-doc.pdf
+%\usepackage{emoji}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{multirow}
+\usepackage{lilyglyphs} %https://www.ctan.org/pkg/lilyglyphs
+\usepackage{boldline}
+\usepackage{etoolbox}
+\usepackage{xstring}
+\usepackage{csquotes}
+%\usepackage{datetime}
+\usepackage{microtype}
+%\usepackage{newspaper}
+\usepackage{yfonts}  % used for the paper title font
+%\usepackage{
+%\date{\today}
+
+%\SetPaperName{Solsikke Tidende}
+%\SetPaperLocation{Santiago de Cali}
+%\SetPaperSlogan{\clefG \hspace{0.15cm} \textbf{$Cipher_{Caesar}(_3)$} \hspace{0.15cm} \clefG}
+%\SetPaperPrice{}
+
+\DeclareFontFamily{LYG}{bigygoth}{}
+\DeclareFontShape{LYG}{bigygoth}{m}{n}{<->s*[2.5]ygoth}{}
+
+\setlength\topmargin{-48pt} 		% article default = -58pt
+\setlength\headheight{0pt}  		% article default = 12pt
+\setlength\headsep{34pt}		% article default = 25pt
+\setlength\marginparwidth{-20pt}	% article default = 121pt
+\setlength\textwidth{7.0in}		% article default = 418pt
+\setlength\textheight{9.5in}		% article default = 296pt
+\setlength\oddsidemargin{-30pt}
+
+
+
+\def\papername{Solsikke Tidende}
+\def\headername{Solsikke Tidende}   % because of the yfonts you may need both papername and headername
+\def\paperlocation{København}
+\def\musagsduhint{{\footnotesize \clefG} \hspace{0.15cm} \textbf{$Cipher_{Caesar}(4)$} \hspace{0.15cm} {\footnotesize \clefG}}
+\newcommand\muzait{{\scriptsize\twoBeamedQuavers}\,}
+
+\newcommand\muzaselection[3]{
+  \paragraph{}
+  {\fontfamily{lmr}\selectfont
+  \textit{
+    \muzait 
+    {\Large\textbf{\StrLeft{#1}{1}}}\StrGobbleLeft{#1}{1}\, 
+     \muzait} (#2) \\
+  {\scriptsize
+   \textit{
+      \blockquote{#3}
+    }
+  }
+}}
+
+\def\paperprice{0 DKK}
+
+\newcounter{volumeno}
+\setcounter{volumeno}{57}
+\newcounter{issueno}
+\setcounter{issueno}{24}
+
+
+
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{picinpar}
+
+\usepackage{lipsum}
+
+\DeclareRobustCommand{\sovs}{
+ \mbox{
+  {\Large $\mathbb{S}_{O}$  }
+  {\kern-1em\raise.8ex\hbox{V}\kern-.125em\@}
+  {\kern-0.3em$\mathbb{S}$}
+ }
+}
+
+
+%\colorlet{cfernando}{LightSteeleBlue3}
+\definecolor{cfernando}{RGB}{38,40,74}
+\definecolor{canna}{RGB}{164, 39, 168}
+\definecolor{csune}{RGB}{80, 97, 96}
+\definecolor{cother}{RGB}{103, 103, 152}
+
+
+\newcommand\sayanna[1]{
+  {\fontfamily{lmr}\selectfont \color{canna}{\textit{- #1}}}
+}
+
+\newcommand\sayfernando[1]{
+  {\fontfamily{lmr}\selectfont \color{cfernando}{\textit{- #1}}}
+}
+
+\newcommand\saysune[1]{
+  {\fontfamily{lmr}\selectfont \color{csune}{\textit{- #1}}}
+}
+
+\newcommand\sayother[1]{
+  {\fontfamily{lmr}\selectfont \color{cother}{\textit{- #1}}}
+}
+
+
+
+\newcommand\translatedfrom[1]{
+ \begin{center}
+  {\fontfamily{lmdh}\selectfont
+  {\textit{oversat fra #1}}
+  }
+ \end{center}
+
+}
+
+
+\renewcommand{\maketitle}{
+  \thispagestyle{empty}
+  \vspace*{-40pt}
+  \begin{center}
+  \hfill
+  {\textgoth
+   {\huge 
+     \usefont{LYG}{bigygoth}{m}{n} \papername
+   }
+  }\hfill%	
+  \raisebox{12pt}{
+   \textbf{
+    \footnotesize 
+    \paperlocation
+   }
+  }\\
+  \vspace*{0.1in}
+  \rule[0pt]{\textwidth}{0.5pt}\\
+  {\small 
+    VOL.\MakeUppercase{\roman{volumeno}}
+    \ldots No. \arabic{issueno}
+   } \hfill 
+   \MakeUppercase{\small  1. december 2023} 
+   \hfill {\small }\\
+  \rule[6pt]{\textwidth}{1.2pt}
+  \end{center}
+  \pagestyle{plain}
+}
+
+\def\ps@plain{%
+  \renewcommand\@oddfoot{}%					% empty recto footer
+  \let\@evenfoot\@oddfoot						% empty verso footer
+  \renewcommand\@evenhead
+  {\parbox{\textwidth}{\vspace*{4pt}
+  {\small VOL.\MakeUppercase{\roman{volumeno}}\ldots No.\arabic{issueno}}\hfill\normalfont\textbf{\headername}\quad\MakeUppercase{\textit\today}\hfill\textrm{\thepage}\\
+  \rule{\textwidth}{0.5pt}
+  \vspace*{12pt}}}%
+  \let\@oddhead\@evenhead
+}
+		
+
+\newcommand\headline[1]{
+  {\fontfamily{lmdh}\selectfont
+    \begin{center} #1\\ %
+    \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
+}
+
+\newcommand\byline[2]{
+  {\fontfamily{lmdh}\selectfont
+  \begin{center} #1 \\%
+  {\footnotesize\bf af \MakeUppercase{#2}} \\ %
+  \rule[3pt]{0.4\hsize}{0.5pt}\\ \end{center} \par
+  }
+}
+
+
+\newcommand\closearticle{{\begin{center}\rule[6pt]{\hsize}{1pt}\vspace*{-16pt}
+			\rule{\hsize}{0.5pt}\end{center}}}
+
+
+
+\begin{document}
+
+\maketitle
+\fontfamily{phv}\selectfont
+
+\begin{multicols}{2}
+\byline{Yule-off 2023 - Kickoff}{Fernándo Sanchez}
+\subsection*{En hård morgen}
+Jeg var midt i en drøm da telefonen ringede. I min drøm arbejdede jeg som dyrepasser i solbeskinnede Orlando's \textit{SeaWorld}, hvor jeg fodrede søløven med pikante godbidder og rensede blåhvalens blåsthul med flødeskum, så jeg var lettere forvirret da jeg svarede:\\
+
+\sayfernando{Sanchez Salsa Skole}\\
+\sayanna{Mærkeligt sagt alligevel. Kan du være her om en halv time}\\
+\sayfernando{Jeg er... ukurant}\\
+
+hviskede jeg, idet jeg var blevet opmærksom på rædslen ved siden af mig. \\
+
+\sayanna{Det ved jeg. Vi ses om en halv}\\
+
+Anna lagde på inden jeg kunne nå at detaljere hvor nederdrægtig min nuværende tilstand var, men det kunne nu også være det samme for jeg havde under ingen omstændigheder tænkt mig at blive hvor jeg var. Først måtte \textit{Kaptajn Ahab} dog undslippe havets kæmpe og det forekom mig ikke nogen nem opgave i min nuværende tilstand: min værtindes lejlighed var upassende lille hendes egen størrelse taget i betragtning, og jeg lå mast inde mellem 3 vægge og dette ugudelige monster. At passere hen over torsoen på hende ville kræve assistance fra en mindre gruppe af \textit{Sherpa} og jeg turde ikke at tage turen henover hendes hoved af frygt for at vække hende. Det betød altså, at jeg var nødt til at bestige \textit{Mount Président Créme Gastronomique} 
+der som en anden elefant-kirkegård i sengens fodende rejste sig som et monument over nattens rædsler. Uden at kede mine kære læsere med for mange ubehagelige detaljer, vil jeg blot tilføje, at havde det ikke været for labyrinten af tomme glas karrysild som i sidste ende spændte ben for mig, ville min flugt fra lejligheden fuldt ud have været på højde med tidligere tiders ninja-snigmord. Lyden af splintrende glas og mit korpus der ramte gulvet fik imidlertig bjerget i sengen til at begynde at rumle, og da jeg nøgen og med de stykker tøj i hånden som jeg nåede at bjerge på vejen ud smækkede døren i, kunne jeg høre klasken med hænderne og hvad der umiskendeligt lød som søløve-hyl fra den anden side. Ubehagelige glimt fra nattens udskejelser surfede ind over mit sind på en bølge af stærk kvalme, en kvalme jeg øjensynligt delte med den chokerede ældre frøken som jeg nu stod indenfor en meters afstand af på trappeopgangen. Nøgne colombianere er nok ikke hverdagskost på det mondæne Frederiksberg, men det må være Frederiksbergs tab.
+
+
+\subsection*{Hos Nykredit}
+\sayanna{Fy for satan hvor du stinker! Har du drukket karry-sild-shots i går?}\\
+\sayfernando{Jeg er ukurant}\\
+sagde jeg skamfuldt og kiggede ned i jorden. \\
+Jeg havde en forventning om at dagens snak, ligesom sidst, ville finde sted i Ilvas CEO-lounge restudsalg på 3. sal, men Anna må have spottet mig da jeg kom slingrende ind på den havelåge jeg havde lånt fra cykelstativerne ud for Frederiksberg Centeret, og have besluttet sig for at gå mig i møde udenfor Nykredits hovedsæde. \\
+
+\sayanna{Jeg kan hverken blive set eller lugtet sammen med dig indenfor i din nuværende tilstand. Vi tager mødet herude. Du skal alligevel bare videregive nogle officielle udmeldinger til Solsikke Tidendes læsere vedrørende Yule-off 2023. Har du noget at skrive med og på?}\\
+
+Jeg kiggede ned af mig selv, som jeg stod dér i XXXL yoga-bukser og trænings-BH der gjorde det ud for undertrøje, som for at spørge: \textit{``og hvor skulle jeg så have gemt det?''}, men nåede frem til den konklusion, at det på nuværende tidspunkt ville klæde mig bedre at sone mine synder i ydmyghed.
+
+\sayfernando{Jeg har en god hukommelse}\\
+
+\sayanna{Godt! Fredag den 1. december starter Yule-off 2023, og jeg vil bede dig om at viderebringe disse informationer i den forbindelse:}\\
+\begin{itemize}
+  \item På den ene hovedscene for Yule-off 2023, er \textit{\textbf{Yule-off 2023 - Musical Contest}}, hvor de bedste jule-sange indenfor forskellige kategorier, dyster om at blive \textit{Årets Jule-Banger 2023}. I konkurrencens indledende fase, dyster sangene i grupper efter kategori, om at blive nomineret til at repræsentere kategorien i slutspilsfasen. Slutspilsfasen foregår ud fra et    \textit{elimination-princip} som vi kender det fra Dak-offs
+  \item På den anden hovedscene, \textit{\textbf{Yule-off 2023 - Team Contest}} - dyster medlemmer af BizTech Wealth familien (inkl. nære venner af familien) i teams om at vinde ære, hæder og fantistiske præmier. Inddelingen i teams følger den team-inddeling som medlemmerne normalt indgår i. Teams tjener point ved at afgive stemmer i musik-konkurrencen og ved at dyste i - og vinde - nogle af de daglige konkurrencer. De daglige konkurrencer er af forskellig beskaffenhed:
+  \begin{enumerate}
+    \item \textbf{\textit{Find Nissen}} - her vil en særlig nisse-figur blive gemt et sted i faciliteterne i, eller omkring, Nykredits Hovedsæde. På undersiden af nissen vil være påklæbet en - for dagen unik - kode, som deltagerne skal indtaste på Yule-off 2023 portalen, hvor deltagerne vil kunne finde en ledetråd til dagens gemmested. Holdene bliver tildelt point efter hvor hurtigt de finder og indtaster koden. 
+    \item \textit{noget med SQL eller katte eller noget helt andet} (jeg håber at læseren vil bære over med mig, men gennemgangen af \textit{Find Nissen} fik endnu en bølge af ubehagelige minder og kvalme til at skylle indover mig, hvilket fik mig til at tabe tråden for en stund. Undskyld!)
+  \end{enumerate}
+  \item Løjerne sparkes i gang \textbf{fredag den 1. december 2023 kl. 16:00} til BizTech Wealth's julefrokost-opvarmningsfest på \textbf{Kalvebod Brygge 1-3, 3. sal}, hvor vi skal udvælge de sidste deltagere til \textit{Musical Contest} iblandt en gruppe af boblere, og hvor holdene vil dyste i en jule-musik-quiz. 
+\end{itemize}
+
+\sayanna{Kan du huske alt det?}\\
+
+\sayfernando{Ingen problemer}\\
+
+løj jeg. Det var tydeligt at Anna havde sine betænkeligheder, men det var også tydeligt at hun ikke havde nogen interesse i at tilbringe mere tid sammen med mig end allerhøjest nødvendigt, så da CMO'en pludseligt spawnede som ud af den blå luft, så hun sit snit til at tage sin afsked:\\
+
+\sayanna{Vi har flere udmeldinger til dig i næste uge, og til den tid er du mere kurant! Start med et bad!}\\
+
+Anna hastede nu afsted imod Glaskubens indgang, men vendte sig så og tilføjede:\\
+
+\sayanna{Københavns Kommune har ret strenge miljø-retningslinjer. Prøv at tage forbi Kommunekemi på Prøvestenen ud for Amager}\\
+
+Jeg vendte endnu engang skamfuldt mit blik mod jorden. CMO'en cirklede snusende omkring mig, som om han prøvede at genkalde sig ét-eller-andet, og da han bemærkede den indtørrede flødeskum på min nakke udbrød han højlydt:\\
+
+\saysune{BERTHA!! DU HAR KNA...}\\
+
+I hvad jeg mistænker for at være en - for ham - sjælden grad af medfølen, afbrød han imidlertid sig selv, og kiggede i stedet anerkendede på mig, smilede, og sagde: \\
+
+\saysune{Hvor virilt! Det er få mænd der ville kunne gøre hvad du har præsteret i nat!}\\
+
+Derpå løb han efter Anna og råbte:\\
+
+\saysune{ANNA! Du skal lige høre en fed idé jeg har fået til team konkurrencen!}\\
+
+\saysune{Den er ONDSKABSFULD!}\\
+
+tilføjede han nærmest triumferende.
+
+\vspace{1cm}
+\closearticle
+\vspace{1.5cm}
+
+
+\byline{Er Fanden endnu engang løs i Laksegade?}{Susan Saxing}
+FOA's talsmand, Poul Provst, oplyser torsdag at de lige nu overvejer at lægge sag an imod bestyrelsen for \textit{Plejecenter Laksens Luner}, Laksegade 34, på vegne af 4 af foreningens medlemmer. De 4 medlemmer er alle mænd i alderen 30-40 år, og er indtil videre sygemeldt på ubestemt tid. Poul Provst udtaler:\\
+
+\sayother{Det her er en MEGET alvorlig sag. De unge mænd er alle i en tilstand af chok og meget stærk sindsbevægelse, så det er os endnu ikke helt klart præcis hvad der er foregået på plejecenteret, men vi snakker i hvert fald om djævle-tilbedelse, forsøg på at hidbringe Satan og tvungen anden-kønslig-omgang-end-sex.}\\
+
+Plejecenterets bestyrelse havde torsdag eftermiddag ingen kommentarer til anklagerne.
+
+%\vspace{1cm}
+%\closearticle
+%\vspace{1.5cm}
+
+\newpage
+
+
+\byline{Starten på en ny bande-krig?}{Thorkild Tjärnsten}
+Glædesturister fra hele verden strømmer hver dag til området omkring Københavns Hovedbanegård og Istedgade, hvor hjertet (og andre vitale organer) kan få slukket nærmest enhver tørst det måtte have. Et sammensurium af mennesker fra alle verdensdele står klar til at servicere de glade turister med alt fra sjældne plante-ekstrakter fra Syd-Amerika og Central-Asien til kropsvarme imod vinter-kulden/-depressionen. Når området derfor i disse dage ligger nærmest øde hen, er det tydeligt at der er noget under opsejling, men der er ikke mange der har lyst til at snakke med pressen om \textit{hvad} der er under opsejling. Efter at have tilbragt 4 timer i den bidende kulde, er det ikke lykkes denne rapporter at finde ud af andet, end at det arbejdende folk i Istedgade og omkring Hovedbanegården frygter at der er en blodig bande-krig på vej imellem to forholdsvist nye bande-grupperinger: \textit{``Hell-divers''} og \textit{``La Raza''}.\\
+Steen Ravnkilde, presse-ansvarlig for Københavns Hovedbanegård Politiekspedition, udtaler:\\
+
+\sayother{Ja, den har sgu taget os lidt på sengen hele den her sag om Hell-divers og La Raza, ha ha ha. Det må du ikke citere mig for.\\
+Det er ikke grupperinger vi hidtil har haft opmærksomhed på, og vi ved derfor ikke særligt meget om dem, andet end at de vist nok har en relation til én eller flere af de store finansielle institutter i København, og at vi lige nu oplever en massiv opmanding og oprustning hos begge bander. Vi formoder at begge bander er interesserede i at overtage kontrollen over prostitution- og narko-markederne i midt-byen, men vi har ikke nogle beviser for dette.\\
+Begge bander har indgivet anonyme anklager imod hinanden, og hvis vi skal tro på disse, bliver Hell-divers ledet af en mand der ligner Ryan Gosling (kendt fra \textit{Drive} og \textit{Barbie filmen}) imens La Raza ledes af en mystisk spansk-talende fyr, og så har vi endvidere fået meldinger om at Hell-divers er i kontrakt-forhandlinger med Martin ``Masse-massakre'' Madsen. 4M skal vi nu ikke være bekymrede for, da vi forventer at kunne bure ham inde på livstid når retssagen imod ham går i gang i næste uge. Det har han fandme rigtigt godt af, for han er da den mest modbydelige volds-psykopat jeg nogensinde er stødt på... Det må du heller ikke citere mig for.}
+
+
+
+\vspace{1cm}
+\closearticle
+\vspace{1.5cm}
+
+\byline{Mand mister sit blod og dør}{Susan Saxing}
+Den facilitetsansvarlige for Emdrupparkens Idrætsanlæg gjorde torsdag morgen et makabert fund, da han mødte ind for at åbne anlægget: ved indgangen til anlægget fandt han liget af en midaldrende mand, som efter forlydende havde \textit{``mistet alt sit blod''}. Steen Ravnskilde fra Københavns Politi udtaler: \\
+
+\sayother{Det er sgu en mærkelig sag det her... han har mistet alt sit blod. Sådan kan man ikke leve. Det var selvfølgeligt meget praktisk da vi skulle transportere ham væk fra området ha ha ha... Det må du ikke citere mig for!\\
+Vi må sgu håbe at der ikke dukker flere af den her slags sager op, for vi har absolut ingen idé om hvad pokker der er sket ha ha ha... Det må du ikke citere mig for.\\
+Ved du hvad? Jeg vil godt ændre min udtalelse til: Ingen kommentarer!
+}
+
+
+
+
+
+\end{multicols}
+
+\end{document}
